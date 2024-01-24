@@ -12,7 +12,7 @@ local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local lastEfficiency = logicPort.getEfficiency()
 
 
-while interupt == false then
+while interupt == false do
 
     curEfficiency = logicPort.getEfficiency()
 
@@ -43,5 +43,6 @@ while interupt == false then
         os.print("Closing.")
 
         os.sleep(3)
-
+    
+    end
 end
