@@ -24,7 +24,7 @@ while interupt == false do
 
     if curEfficiency > 0 then
 
-      if lastEfficiency > curEfficiency then
+      if lastEfficiency > curEfficiency and curEfficiency > 30 then
 
         adjustment_negative = true
 
@@ -105,12 +105,12 @@ while interupt == false do
         logicPort.adjustReactivity(10)
         print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 10")
 
-      elseif curEfficiency < 30 or curEfficiency > 30 and adjustment_negative == true then
+      elseif curEfficiency < 40 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-15)
         print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -15")
 
-      elseif curEfficiency < 30 or curEfficiency > 30 and adjustment_negative == false then
+      elseif curEfficiency < 40 and adjustment_negative == false then
 
         logicPort.adjustReactivity(15)
         print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 15")
