@@ -20,6 +20,8 @@ while interupt == false do
 
     local curEfficiency = logicPort.getEfficiency()
 
+    local changeInEfficiency = curEfficiency - lastEfficiency
+
     if curEfficiency > 0 then
 
       if lastEfficiency > curEfficiency then
@@ -31,87 +33,87 @@ while interupt == false do
       if curEfficiency == 100 then
 
         logicPort.adjustReactivity(0)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 0")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 0")
       
       elseif curEfficiency > 95 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-0.01)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -0.01")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -0.01")
 
       elseif curEfficiency > 95 and adjustment_negative == false then
 
         logicPort.adjustReactivity(0.01)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 0.01")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 0.01")
       
       elseif curEfficiency > 90 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-0.05)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -0.05")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -0.05")
 
       elseif curEfficiency > 90 and adjustment_negative == false then
 
         logicPort.adjustReactivity(0.05)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 0.05")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 0.05")
 
       elseif curEfficiency > 80 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-0.1)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -0.1")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -0.1")
 
       elseif curEfficiency > 80 and adjustment_negative == false then
 
         logicPort.adjustReactivity(0.1)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 0.1")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 0.1")
 
       elseif curEfficiency > 70 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-0.5)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -0.5")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -0.5")
 
       elseif curEfficiency > 70 and adjustment_negative == false then
 
         logicPort.adjustReactivity(0.5)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 0.5")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 0.5")
 
       elseif curEfficiency > 60 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-1)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -1")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -1")
 
       elseif curEfficiency > 60 and adjustment_negative == false then
 
         logicPort.adjustReactivity(1)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 1")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 1")
 
       elseif curEfficiency > 50 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-5)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -5")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -5")
 
       elseif curEfficiency > 50 and adjustment_negative == false then
 
         logicPort.adjustReactivity(5)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 5")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 5")
 
       elseif curEfficiency > 40 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-10)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -10")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -10")
 
       elseif curEfficiency > 40 and adjustment_negative == false then
 
         logicPort.adjustReactivity(10)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 10")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 10")
 
       elseif curEfficiency < 30 or curEfficiency > 30 and adjustment_negative == true then
 
         logicPort.adjustReactivity(-15)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: -15")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: -15")
 
       elseif curEfficiency < 30 or curEfficiency > 30 and adjustment_negative == false then
 
         logicPort.adjustReactivity(15)
-        print("Efficiency = " .. curEfficiency .. "\n" .. "Adjustment: 15")
+        print("\nChange = " .. changeInEfficiency .. "\nEfficiency = " .. curEfficiency .. "\nAdjustment: 15")
 
       end
 
@@ -120,6 +122,8 @@ while interupt == false do
     end
 
     local timerID = os.startTimer(5)
+
+    print("loop end.")
 
     local event = os.pullEvent()
 
@@ -132,6 +136,4 @@ while interupt == false do
         os.sleep(3)
     
     end
-
-    print("loop end.")
 end
