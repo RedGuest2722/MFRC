@@ -74,11 +74,11 @@ local function ramping(port)
 
             if changeNegative == false then
 
-                changeNegative == true
+                changeNegative = true
 
             else
 
-                changeNegative == false
+                changeNegative = false
 
             end
         end
