@@ -16,6 +16,7 @@ Additional commands:
 
 local setReact = 0
 local lastEffi = 0
+local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
@@ -67,7 +68,7 @@ local function efficiencyLevelChange(cE)
 
 end
 
-local function ramping(port, lastEffi, rC, setReact) -- this allows the program to by pass the stable reaction logic.
+local function ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
 
     changeNegative = false
     firstRun = true
@@ -96,14 +97,12 @@ local function ramping(port, lastEffi, rC, setReact) -- this allows the program 
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            setReact = setReact + levelChange
-            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   +" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            setReact = setReact - levelChange
-            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   -" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
@@ -113,10 +112,10 @@ local function ramping(port, lastEffi, rC, setReact) -- this allows the program 
         os.sleep(2)
     end
 
-    return lastEffi, rC, setReact
+    return lastEffi, rC
 end
 
-local function stable(port, lastEffi, rC, setReact)
+local function stable(port, lastEffi, rC)
 
     changeNegative = false
     firstRun = true
@@ -143,14 +142,12 @@ local function stable(port, lastEffi, rC, setReact)
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            setReact = setReact + levelChange
-            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   +" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            setReact = setReact - levelChange
-            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   -" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
@@ -160,18 +157,18 @@ local function stable(port, lastEffi, rC, setReact)
         os.sleep(4)
     end
 
-    return lastEffi, rC, setReact
+    return lastEffi, rC
 end
 
 while true do
     
     if round(logicPort.getEfficiency()) > 80 then
         
-        lastEffi, roundCounter, setReact = stable(logicPort, lastEffi, roundCounter, setReact)
+        lastEffi, roundCounter = stable(logicPort, lastEffi, roundCounter)
 
     else
 
-        lastEffi, roundCounter, setReact = ramping(logicPort, lastEffi, roundCounter, setReact)
+        lastEffi, roundCounter = ramping(logicPort, lastEffi, roundCounter)
 
     end
 end
