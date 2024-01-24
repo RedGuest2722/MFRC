@@ -127,11 +127,11 @@ while interupt == false do
 
     end
 
-    if countNegative < 3 then
+    if countNegative > 2 then
 
       os.sleep(5)
 
-      local checkEfficiency = logicport.getEfficiency()
+      local checkEfficiency = logicPort.getEfficiency()
 
       if checkEfficiency < curEfficiency then
 
