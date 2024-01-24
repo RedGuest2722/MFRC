@@ -20,11 +20,11 @@ local ramp = true -- this allows the program to by pass the stable reaction logi
 
 local function check(port, lE)
 
-    Local eL = port.getErrorLevel() -- find error level
+    eL = port.getErrorLevel() -- find error level
 
-    local cuE = port.getEfficiency() -- find current efficiency
+    cuE = port.getEfficiency() -- find current efficiency
 
-    local chE = cuE - lE -- change in efficiency
+    chE = cuE - lE -- change in efficiency
 
     return cuE, chE, eL
 
@@ -60,11 +60,11 @@ end
 
 local function ramping(port)
 
-    local timerID = os.startTimer(30)
+    timerID = os.startTimer(30)
 
-    local changeNegative = false
+    changeNegative = false
 
-    local firstRun = true
+    firstRun = true
 
     while os.pullEvent("timer") == timerID do
 
