@@ -68,7 +68,7 @@ local function ramping(port)
 
     while os.pullEvent("timer") == timerID do
 
-        local curEffi, chaEffi, errLev = check(port, lastEffi)
+        curEffi, chaEffi, errLev = check(port, lastEffi)
         
         if firstRun == false and chaEffi < 0 then
 
