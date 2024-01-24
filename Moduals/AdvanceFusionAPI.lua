@@ -14,7 +14,8 @@ Additional commands:
 
 -- Local varibles 
 
-local lastEffi
+local lastEffi = 0
+local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 
 local function round(num)
     mult = 10^(2)
@@ -106,4 +107,4 @@ local function ramping(port) -- this allows the program to by pass the stable re
     end
 end
 
-ramping("fusionReactorLogicAdapter_0")
+ramping(logicPort)
