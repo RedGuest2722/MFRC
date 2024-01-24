@@ -16,10 +16,10 @@ Additional commands:
 
 local lastEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
+      rC = 0
 
 local function round(num)
-    mult = 10^(2)
-    return math.floor(num * mult + 0.5) / mult
+    return math.floor(num * 100 + 0.5) / 100
   end
 
 local function check(port, lE)
@@ -56,6 +56,10 @@ local function efficiencyLevelChange(cE)
 
         change = 15
 
+    else
+
+        change = 20
+
     end
 
     return change
@@ -64,13 +68,10 @@ end
 
 local function ramping(port) -- this allows the program to by pass the stable reaction logic.
 
-    ramp = 1
-
     changeNegative = false
-
     firstRun = true
 
-    while ramp < 6 do
+    while curEffi < 80 do
 
         curEffi, chaEffi, errLev = check(port, lastEffi)
         
@@ -94,14 +95,17 @@ local function ramping(port) -- this allows the program to by pass the stable re
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            print("Ramp Round: ".. ramp .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            print("Ramp Round: ".. ramp .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
+
+        lastEffi = curEffi
+        rC = rC + 1
 
         os.sleep(5)
     end
