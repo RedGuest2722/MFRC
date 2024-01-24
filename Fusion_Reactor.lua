@@ -16,7 +16,7 @@ local adjustment = 1
 
 while interupt == false do
 
-    local adjustment_negative = true
+    local adjustment_negative = false
 
     local curEfficiency = logicPort.getEfficiency()
 
@@ -26,7 +26,7 @@ while interupt == false do
 
       if lastEfficiency > curEfficiency then
 
-        adjustment_negative = false
+        adjustment_negative = true
 
       end
 
