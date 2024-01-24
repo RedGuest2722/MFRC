@@ -16,15 +16,18 @@ Additional commands:
 
 local lastEffi
 
-local ramp = true -- this allows the program to by pass the stable reaction logic
+local function round(num)
+    mult = 10^(2)
+    return math.floor(num * mult + 0.5) / mult
+  end
 
 local function check(port, lE)
 
-    eL = port.getErrorLevel() -- find error level
+    eL = round(port.getErrorLevel()) -- find error level
 
-    cuE = port.getEfficiency() -- find current efficiency
+    cuE = round(port.getEfficiency()) -- find current efficiency
 
-    chE = cuE - lE -- change in efficiency
+    chE = round(cuE - lE) -- change in efficiency
 
     return cuE, chE, eL
 
@@ -58,15 +61,15 @@ local function efficiencyLevelChange(cE)
 
 end
 
-local function ramping(port)
+local function ramping(port) -- this allows the program to by pass the stable reaction logic.
 
-    timerID = os.startTimer(30)
+    ramp = 1
 
     changeNegative = false
 
     firstRun = true
 
-    while os.pullEvent("timer") == timerID do
+    while ramp < 6 do
 
         curEffi, chaEffi, errLev = check(port, lastEffi)
         
@@ -85,15 +88,21 @@ local function ramping(port)
 
         firstRun = false
 
+        levelChange = efficiencyLevelChange(curEffi)
+
         if changeNegative == false then
 
-            port.adjustReactivity(efficiencyLevelChange(curEffi))
+            port.adjustReactivity(levelChange)
+            print("Ramp Round: ".. ramp .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
-            port.adjustReactivity(-efficiencyLevelChange(curEffi))
+            port.adjustReactivity(-levelChange)
+            print("Ramp Round: ".. ramp .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
+
+        os.sleep(5)
     end
 end
 
