@@ -17,7 +17,7 @@ Additional commands:
 local setReact = 0
 local lastEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
-      rC = 0
+local roundCounter = 0
 
 local function round(num)
     return math.floor(num * 100 + 0.5) / 100
@@ -97,20 +97,20 @@ local function ramping(port, lastEffi, rC, setReact) -- this allows the program 
 
             port.adjustReactivity(levelChange)
             setReact = setReact + levelChange
-            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
             setReact = setReact - levelChange
-            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   -" .. levelChange) -- Debug
 
         end
 
         lastEffi = curEffi
         rC = rC + 1
 
-        os.sleep(4)
+        os.sleep(2)
     end
 
     return lastEffi, rC, setReact
@@ -144,13 +144,13 @@ local function stable(port, lastEffi, rC, setReact)
 
             port.adjustReactivity(levelChange)
             setReact = setReact + levelChange
-            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
             setReact = setReact - levelChange
-            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi " " .. chaEffi .. "\nReactivity: " .. setReact .. "   -" .. levelChange) -- Debug
 
         end
 
