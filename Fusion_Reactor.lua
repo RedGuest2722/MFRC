@@ -139,6 +139,7 @@ while interupt == false do
         print("Error:Unstable efficiency level")
         interupt = true
 
+      end
     end
 
     local timerID = os.startTimer(5)
