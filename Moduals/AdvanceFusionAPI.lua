@@ -115,3 +115,19 @@ local function ramping(port) -- this allows the program to by pass the stable re
 end
 
 ramping(logicPort)
+
+--[[
+while true do
+    
+    if round(logicPort.getEfficiency()) > 80 then
+        
+        stable(logicPort)
+
+    else
+
+        ramping(logicPort)
+
+    end
+
+end
+]]--
