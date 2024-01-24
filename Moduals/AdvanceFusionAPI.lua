@@ -72,7 +72,7 @@ local function ramping(port) -- this allows the program to by pass the stable re
     changeNegative = false
     firstRun = true
 
-    while curEffi < 80 do
+    while round(port.getEfficiency()) < 80 do
 
         curEffi, chaEffi, errLev = check(port, lastEffi)
         
