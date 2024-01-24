@@ -11,7 +11,7 @@ local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 
 local lastEfficiency = 0
 
-local adjustment = 1
+local countNegative = 0
 
 
 while interupt == false do
@@ -24,7 +24,13 @@ while interupt == false do
 
     if curEfficiency > 0 then
 
-      if lastEfficiency > curEfficiency and curEfficiency > 30 then
+      if changeInEfficiency < 0 then
+
+        countNegative = countNegative + 1
+
+      end
+
+      if lastEfficiency > curEfficiency and countNegative < 3 then
 
         adjustment_negative = true
 
@@ -118,6 +124,18 @@ while interupt == false do
       end
 
       lastEfficiency = curEfficiency
+
+    end
+
+    if countNegative < 3 then
+
+      os.sleep(5)
+
+      local checkEfficiency = logicport.getEfficiency()
+
+      if checkEfficiency < curEfficiency then
+
+        exit()
 
     end
 
