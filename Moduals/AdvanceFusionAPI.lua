@@ -67,7 +67,7 @@ local function efficiencyLevelChange(cE)
 
 end
 
-local function ramping(port) -- this allows the program to by pass the stable reaction logic.
+local function ramping(port, lastEffi, rC, setReact) -- this allows the program to by pass the stable reaction logic.
 
     changeNegative = false
     firstRun = true
@@ -112,22 +112,66 @@ local function ramping(port) -- this allows the program to by pass the stable re
 
         os.sleep(4)
     end
+
+    return lastEffi, rC, setReact
 end
 
-ramping(logicPort)
+local function stable(port, lastEffi, rC, setReact)
 
---[[
+    changeNegative = false
+    firstRun = true
+
+    while round(port.getEfficiency()) > 80 do
+
+        curEffi, chaEffi, errLev = check(port, lastEffi)
+        
+        if chaEffi < 0 then
+
+            if changeNegative == false then
+
+                changeNegative = true
+
+            else
+
+                changeNegative = false
+
+            end
+        end
+
+        levelChange = efficiencyLevelChange(curEffi)
+
+        if changeNegative == false then
+
+            port.adjustReactivity(levelChange)
+            setReact = setReact + levelChange
+            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
+
+        else
+
+            port.adjustReactivity(-levelChange)
+            setReact = setReact - levelChange
+            print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
+
+        end
+
+        lastEffi = curEffi
+        rC = rC + 1
+
+        os.sleep(4)
+    end
+
+    return lastEffi, rC, setReact
+end
+
 while true do
     
     if round(logicPort.getEfficiency()) > 80 then
         
-        stable(logicPort)
+        lastEffi, roundCounter, setReact = stable(logicPort, lastEffi, roundCounter, setReact)
 
     else
 
-        ramping(logicPort)
+        lastEffi, roundCounter, setReact = ramping(logicPort, lastEffi, roundCounter, setReact)
 
     end
-
 end
-]]--
