@@ -14,6 +14,7 @@ Additional commands:
 
 -- Local varibles 
 
+local setReact = 0
 local lastEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
       rC = 0
@@ -95,11 +96,13 @@ local function ramping(port) -- this allows the program to by pass the stable re
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
+            setReact = setReact + levelChange
             print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
+            setReact = setReact - levelChange
             print("\nRound: ".. rC .."\nCurrent Efficiency: " .. curEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
@@ -107,7 +110,7 @@ local function ramping(port) -- this allows the program to by pass the stable re
         lastEffi = curEffi
         rC = rC + 1
 
-        os.sleep(5)
+        os.sleep(4)
     end
 end
 
