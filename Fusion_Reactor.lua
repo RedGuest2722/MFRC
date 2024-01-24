@@ -135,7 +135,9 @@ while interupt == false do
 
       if checkEfficiency < curEfficiency then
 
-        exit()
+        logicPort.setInjectionRate(0)
+        print("Error:Unstable efficiency level")
+        interupt = true
 
     end
 
