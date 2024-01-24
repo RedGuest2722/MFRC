@@ -9,14 +9,16 @@ local interupt = false
 
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 
-local lastEfficiency = logicPort.getEfficiency()
+local lastEfficiency = 0
 
 local adjustment = 1
 
 
 while interupt == false do
 
-    curEfficiency = logicPort.getEfficiency()
+    local adjustment_negative = false
+
+    local curEfficiency = logicPort.getEfficiency()
 
     if curEfficiency > 0 then
 
