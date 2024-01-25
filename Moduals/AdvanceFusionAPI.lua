@@ -21,8 +21,21 @@ local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
 local function round(num)
+
     return math.floor(num * 100 + 0.5) / 100
-  end
+
+end
+
+local function time()
+
+    timeAll = os.time()
+    timeSplit = tonumber(string.sub(tostring(timeAll), -3))
+    timeMin = timeAll - timeSplit
+    timeSecs = math.floor(60 * timeSplit)
+    timeReady = "Day: " .. os.day() .. "   Time: " .. timeMin .. "." .. timeSecs
+    return timeReady
+
+end
 
 local function check(port, lE)
 
@@ -97,12 +110,12 @@ local function ramping(port, lastEffi, rC) -- this allows the program to by pass
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\n" .. time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            print("\nRound: ".. rC .."  - Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\n" .. time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
@@ -142,12 +155,12 @@ local function stable(port, lastEffi, rC)
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\n" .. time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            print("\nRound: ".. rC .."  - Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\n" .. time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
@@ -166,9 +179,13 @@ while true do
         
         lastEffi, roundCounter = stable(logicPort, lastEffi, roundCounter)
 
-    else
+    elseif round(logicPort.getEfficiency()) ~= 0 then
 
         lastEffi, roundCounter = ramping(logicPort, lastEffi, roundCounter)
+
+    else
+
+        print("\n" .. time() .. "\nReactor Status: Unreactive")
 
     end
 end
