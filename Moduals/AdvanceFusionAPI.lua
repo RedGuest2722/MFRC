@@ -14,7 +14,6 @@ Additional commands:
 
 -- Local varibles 
 
-local setReact = 0
 local lastEffi = 0
 local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
@@ -170,7 +169,7 @@ local function stable(port, lastEffi, rC)
 end
 
 while true do
-    
+
     if round(logicPort.getEfficiency()) > 80 then
         
         lastEffi, roundCounter = stable(logicPort, lastEffi, roundCounter)
@@ -179,10 +178,12 @@ while true do
 
         lastEffi, roundCounter = ramping(logicPort, lastEffi, roundCounter)
 
-    else
+    else 
 
         print("\n" .. time() .. "\nReactor Status: Unreactive")
         os.sleep(4)
 
     end
 end
+
+
