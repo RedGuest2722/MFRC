@@ -27,10 +27,8 @@ local function round(num)
 end
 
 local function time()
-
-    timeAll = textutils.formatTime(os.time(), false)
     
-    timeReady = "Day: " .. os.day() .. "   Time: " .. timeAll
+    timeReady = "Day: " .. os.day() .. "   Time: " .. textutils.formatTime(os.time(), false)
     return timeReady
 
 end
