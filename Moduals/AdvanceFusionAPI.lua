@@ -28,11 +28,9 @@ end
 
 local function time()
 
-    timeAll = os.time()
-    timeSplit = tonumber(string.sub(tostring(timeAll), -3))
-    timeMin = timeAll - timeSplit
-    timeSecs = math.floor(60 * timeSplit)
-    timeReady = "Day: " .. os.day() .. "   Time: " .. timeMin .. "." .. timeSecs
+    timeAll = textutils.formatTime(os.time(), false)
+    
+    timeReady = "Day: " .. os.day() .. "   Time: " .. timeAll
     return timeReady
 
 end
@@ -186,6 +184,7 @@ while true do
     else
 
         print("\n" .. time() .. "\nReactor Status: Unreactive")
+        os.sleep(4)
 
     end
 end
