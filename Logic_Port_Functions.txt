@@ -7,7 +7,6 @@
 
 Set Functions:
 
-    setActiveCooledLogic
     setInjectionRate
 
 
@@ -15,13 +14,9 @@ Coolant Functions:
 
     getWaterCapacity
     getWaterFilledPercentage
-    getWater
 
     getSteamCapacity
     getSteamFilledPercentage
-    getSteam
-
-    isActiveCooledLogic
 
 
 Temperature Functions:
@@ -35,15 +30,12 @@ Temperature Functions:
 
 Fuel Functions
 
-    getDTFuel
     getDTFuelFilledPercentage
     getDTFuelCapacity
 
-    getTritium
     getTritiumFilledPercentage
     getTritiumCapacity
 
-    getDeuterium
     getDeuteriumFilledPercentage
     getDeuteriumCapacity
 
@@ -54,8 +46,6 @@ Other Functions:
     getProductionRate
 
     getInjectionRate
-    getMinInjectionRate
-
     getHohlraum
 
     
