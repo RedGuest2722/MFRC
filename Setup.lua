@@ -103,9 +103,7 @@ else
 
             keyNotPressed = false
             term.clear()
-            error("Exited program")
 
         end
     end  
 end
-
