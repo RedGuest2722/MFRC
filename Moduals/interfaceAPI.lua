@@ -13,7 +13,7 @@ function time(monitor, maxSize)
     monitor.setTextColor(colors.black)
 
     time1 = textutils.formatTime(os.time(), true)
-    day = "Day: " .. tostring(os.day())
+    day1 = tostring(os.day())
 
     if string.len(time1) == 4 then
 
@@ -25,7 +25,21 @@ function time(monitor, maxSize)
 
     end
 
-    day_time = day .. " Time: " .. time2
+    if string.len(day1) == 1 then
+
+        day2 = "00" .. day1
+
+    elseif string.len(day1) == 2 then
+
+        day2 = "0" .. day1
+
+    else
+
+        day2 = day1
+
+    end
+
+    day_time = day2 .. " Time: " .. time2
 
     monitor.setCursorPos((maxSize[1] - string.len(day_time)), 2)
     monitor.write(day_time)
@@ -35,7 +49,7 @@ function time(monitor, maxSize)
 
     for i = 1, (maxSize[1] - (19 + maxSize[3])) do
 
-        monitor.setCursorPos(((maxSize[3] - 1) + i), 2)
+        monitor.setCursorPos(((maxSize[3] - 2) + i), 2)
         monitor.write(" ")
 
     end
