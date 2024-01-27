@@ -12,7 +12,7 @@ local logicPort     = "fusionReactorLogicAdapter_0" -- please find the periphera
 local monitorName   = "monitor" -- please find the peripheral name of the monitor.
 
 
-local mekanismAPI   = os.loadAPI("/Moduals/mekanismFuisionAPI.lua")
+local mekanismAPI   = os.loadAPI("/Moduals/mekanismFusionAPI.lua")
 local interfaceAPI  = os.loadAPI("/Moduals/interface.lua")
 local advancedAPI   = nil
 
@@ -45,7 +45,7 @@ if advanced == false then
         os.sleep(0.05)
 
     end
-    
+
 else
 
     while true do
