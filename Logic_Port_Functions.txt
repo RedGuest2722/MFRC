@@ -1,0 +1,55 @@
+
+
+
+
+
+
+
+Set Functions:
+
+    setInjectionRate
+
+
+Coolant Functions:
+
+    getWaterCapacity
+    getWaterFilledPercentage
+
+    getSteamCapacity
+    getSteamFilledPercentage
+
+
+Temperature Functions:
+
+    getPlasmaTemperature
+    getMaxPlasmaTemperature
+
+    getCaseTemperature
+    getMaxCasingTemperature
+
+
+Fuel Functions
+
+    getDTFuelFilledPercentage
+    getDTFuelCapacity
+
+    getTritiumFilledPercentage
+    getTritiumCapacity
+
+    getDeuteriumFilledPercentage
+    getDeuteriumCapacity
+
+
+Other Functions:
+
+    getPassiveGeneration
+    getProductionRate
+
+    getInjectionRate
+    getHohlraum
+
+    
+    
+
+
+-- ignition temp (400000000 FE)
