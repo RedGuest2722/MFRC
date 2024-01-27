@@ -19,10 +19,6 @@ local advancedAPI   = nil
 local fusionLogicPort = peripheral.find(logicPort)
 local monitor         = peripheral.find(monitorName)
 
-print(monitor)
-
-os.sleep(10)
-
 local advanced      = false
 local monitorSize   = nil
 local reactorStatus = nil
