@@ -8,8 +8,9 @@ main script for the fusion reactor.
 
     -- Name set
 
+                                                    -- if they area a side please specify that
 local logicPort     = "fusionReactorLogicAdapter_0" -- please find the peripheral name of the Fusion Reactor Port.
-local monitorName   = "monitor" -- please find the peripheral name of the monitor.
+local monitorName   = "left"                        -- please find the peripheral name of the monitor.
 
 
 os.loadAPI("/Moduals/mekanismFusionAPI.lua")
