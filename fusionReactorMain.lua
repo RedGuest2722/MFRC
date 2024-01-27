@@ -9,7 +9,7 @@ main script for the fusion reactor.
     -- Name set
 
 local logicPort     = "fusionReactorLogicAdapter_0" -- please find the peripheral name of the Fusion Reactor Port.
-local monitorName   = "monitor_0" -- please find the peripheral name of the monitor.
+local monitorName   = "monitor" -- please find the peripheral name of the monitor.
 
 
 local mekanismAPI   = os.loadAPI("/Moduals/mekanismFusionAPI.lua")
@@ -18,6 +18,10 @@ local advancedAPI   = nil
 
 local fusionLogicPort = peripheral.find(logicPort)
 local monitor         = peripheral.find(monitorName)
+
+print(monitor)
+
+os.sleep(10)
 
 local advanced      = false
 local monitorSize   = nil
