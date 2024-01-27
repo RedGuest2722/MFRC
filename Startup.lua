@@ -63,4 +63,3 @@ elseif exists[4] == false then
 end
 
 os.run({}, files[2])
-error("Exited program")

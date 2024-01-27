@@ -6,27 +6,27 @@ this runs some commands for the main script
 
 function getData(port)
 
-    plasmTemp = port.getPlasmaTemperature()
-    PlasmMax  = port.getMaxPlasmaTemperature()
+    local plasmTemp = port.getPlasmaTemperature()
+    local PlasmMax  = port.getMaxPlasmaTemperature()
     
-    plasma = {plasmaTemp, plasmaMax}
+    local plasma = {plasmaTemp, plasmaMax}
 
 
-    caseTemp = port.getCaseTemperature()
-    caseMax  = port.getMaxCasingTemperature
+    local caseTemp = port.getCaseTemperature()
+    local caseMax  = port.getMaxCasingTemperature
 
-    case = {caseTemp, caseMax}
-
-
-    water = port.getWaterFilledPercentage()
-    steam = port.getSteamFilledPercentage()
+    local case = {caseTemp, caseMax}
 
 
-    DTfuel    = port.getDTFuelFilledPercentage()
-    tritium   = port.getTritiumFilledPercentage()
-    deutirium = port.getDeuteriumFilledPercentage
+    local water = port.getWaterFilledPercentage()
+    local steam = port.getSteamFilledPercentage()
+
+
+    local DTfuel    = port.getDTFuelFilledPercentage()
+    local tritium   = port.getTritiumFilledPercentage()
+    local deutirium = port.getDeuteriumFilledPercentage
     
-    fuel = {DTfuel, tritium, deutirium}
+    local fuel = {DTfuel, tritium, deutirium}
 
 
     return {plasma, case, water, steam, fuel}
