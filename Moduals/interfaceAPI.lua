@@ -292,7 +292,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
                     monitor.setBackgroundColor[1]
                 
-                    for o = 1, tankPixels[5][o][1]
+                    for o = 1, tankPixels[5][o][1] do
 
                         monitor.setCursorPos((3 + o), (12 + (2 * p)))
                         monitor.write(" ")
