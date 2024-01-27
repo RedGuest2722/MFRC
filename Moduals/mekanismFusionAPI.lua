@@ -28,7 +28,8 @@ function getData(port)
     
     local fuel = {DTfuel, tritium, deutirium}
 
+    local filledCapacities = {plasma, case, water, steam, fuel}
 
-    return {plasma, case, water, steam, fuel}
+    return filledCapacities
     
 end
