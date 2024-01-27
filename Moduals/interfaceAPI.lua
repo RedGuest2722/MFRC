@@ -15,6 +15,9 @@ function time(monitor, maxSize)
     local time1 = textutils.formatTime(os.time(), true)
     local day1 = tostring(os.day())
 
+    local time2 = nil
+    local day2 = nil
+
     if string.len(time1) == 4 then
 
         time2 = "0" .. time1
@@ -238,11 +241,11 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
     end
 
-    for i in ipairs(filledCapacities) do
+    for i, q in ipairs(filledCapacities) do
 
         if i == 5 then
 
-            for o in ipairs(filledCapacities[i]) do
+            for o, w in ipairs(filledCapacities[i]) do
 
                 local colored = round(tankSize * filledCapacities[5][o])
                 local white = (tankSize - colored)
