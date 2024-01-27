@@ -13,7 +13,7 @@ local monitorName   = "monitor" -- please find the peripheral name of the monito
 
 
 local mekanismAPI   = os.loadAPI("/Moduals/mekanismFusionAPI.lua")
-local interfaceAPI  = os.loadAPI("/Moduals/interface.lua")
+local interfaceAPI  = os.loadAPI("/Moduals/interfaceAPI.lua")
 local advancedAPI   = nil
 
 local fusionLogicPort  = peripheral.find(logicport)
