@@ -90,22 +90,22 @@ if http.checkURL(repositoryMain) then
 else
 
     print("\nCannot connect to the Repository to download the files.\nThis may be due to an internet connection or an unvalid link.")
-    
+
+    print("\nThis program will now end. Press any key to continue.")
+
+    local keyNotPressed = true
+
+    while keyNotPressed do
+
+        event = os.pullEvent()
+
+        if event == "key" then
+
+            keyNotPressed = false
+            term.clear()
+            error("Exited program")
+
+        end
+    end  
 end
 
-print("\nThis program will now end. Press any key to continue.")
-
-local keyNotPressed = true
-
-while keyNotPressed do
-
-    event = os.pullEvent()
-
-    if event == "key" then
-
-        keyNotPressed = false
-        term.clear()
-        error("Exited program")
-
-    end
-end
