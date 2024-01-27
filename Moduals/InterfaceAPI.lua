@@ -82,9 +82,36 @@ local function drawBorder(monitor, maxSize)
 
     for i = 2, (maxSize[1] - 1) do
 
-        monitor.setCursorPos(i, maxSize[4])
+        monitor.setCursorPos(i, 3)
         monitor.write(" ")
     
+    end
+
+    -- Tank Boundaries
+
+    monitor.setBackgroundColor(colors.black)
+
+        -- Vertical
+
+    for i = 1, 13 do
+
+        monitor.setCursorPos(3, (4 + i))
+        monitor.write(" ")
+        monitor.setCursorPos((maxSize[3] - 2), (4 + i))
+        monitor.write(" ")
+
+    end
+
+        -- Horizontal
+
+    for i = 1, 7 do
+
+        for o = 1, (maxSize[3] - 5) do
+
+            monitor.setCursorPos((3 + o), (3 + (i * 2)))
+            monitor.write(" ")
+
+        end
     end
 end
 
@@ -103,7 +130,7 @@ local function drawBackground(monitor, maxSize)
     end
 end
 
-local function drawTextInit(monitor, maxSize)
+local function drawTextInit(monitor, maxSize, DTPercent)
 
     -- Program name
 
@@ -112,9 +139,60 @@ local function drawTextInit(monitor, maxSize)
     monitor.setBackgroundColor(colors.lightGray)
     monitor.write("Fusion Reactor")
 
+    -- Tank Names
+
+    monitor.setBackgroundColor(colors.black)
+    monitor.setTextColor(colors.white)
+
+    local tankNames = {"Plasma Temp.", "Case Temp.", "Water Level", "Steam Level", "DT Level", "Tritium", "Deutirium"}
+    local  tankWidth = maxSize[3] - 5
+
+    local text = nil
+    local textLength = nil
+
+    for i = 1, 4 do
+
+        text = tankNames[i]
+        textLength = string.len(text)
+
+        monitor.setCursorPos(((0.5 * (maxSize[3] - textLength)) + 1), (3 + (2 * i)))
+        monitor.write(text)
+
+    end
+
+    if DTPercent > 0 then
+
+        monitor.setCursorPos(((0.5 * (maxSize[3] - string.len(tankNames[5]))) + 1), 13)
+        monitor.write(tankNames[5])
+
+        monitor.setBackgroundColor(colors.lightGray)
+
+        for i = 1, 2 do
+            for o = 1, (maxSize[3] - 3) do
+
+                monitor.setCursorPos((o + 2), (15 + i))
+                monitor.write(" ")
+            
+            end
+        end
+
+    else
+
+        for i = 1, 2 do
+
+            text = tankNames[i + 5]
+            textLength = string.len(text)
+
+            monitor.setCursorPos(((0.5 * (maxSize[3] - textLength)) + 1), (11 + (2 * i)))
+            monitor.write(text)
+        
+        end
+    end
 end
 
 local function redrawBars(monitor, maxSize, filledCapcities)
+
+
 
 end
 
@@ -126,24 +204,26 @@ local function Init(monitor)
     monitor.setCursorPos(1, 1)
 
     local max_X, max_Y = monitor.getSize()
+    local midBorder = math.ceil(max_X / 2)
+    local tankSize = {3, midBorder - 6}
     
-    local maxSize = {max_X, max_Y, math.ceil(max_X / 2), (max_Y - 16)}
+    local maxSize = {max_X, max_Y, midBorder, tankSize}
 
     drawBackground(monitor, maxSize)
     drawBorder(monitor, maxSize)
     time(monitor, maxSize)
-    drawTextInit(monitor, maxSize)
+    drawTextInit(monitor, maxSize, 0)
 
     return maxSize
 
 end
 
-local maxSize = Init(peripheral.wrap("left"))
+local maxSize = Init(peripheral.find("monitor"))
 
 while true do
 
-    time(peripheral.wrap("left"), maxSize)
-    redrawBars(monitor, maxSize, {10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5})
+    time(peripheral.find("monitor"), maxSize)
+    redrawBars(peripheral.find("monitor"), maxSize, {10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5})
     os.sleep(0.05)
 
 end

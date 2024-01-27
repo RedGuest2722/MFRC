@@ -3,5 +3,10 @@
         "undefined-field",
         "deprecated",
         "lowercase-global"
+    ],
+    "Lua.diagnostics.globals": [
+        "colors",
+        "textutils",
+        "peripheral"
     ]
 }

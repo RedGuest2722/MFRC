@@ -169,7 +169,6 @@ local function stable(port, lastEffi, rC)
 end
 
 while true do
-
     if round(logicPort.getEfficiency()) > 80 then
         
         lastEffi, roundCounter = stable(logicPort, lastEffi, roundCounter)
@@ -185,5 +184,3 @@ while true do
 
     end
 end
-
-
