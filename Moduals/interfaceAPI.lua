@@ -264,18 +264,17 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
         end
     end
 
-    for i = 1, 4 do
-
+    for i = 1, 5 do
+        
         if i == 5 then
 
-            if tankPixels[5][1][2] ~= 0 then
+            if filledCapacities[5][1] ~= 0 then
 
                 monitor.setBackgroundColor(tankColors[1])
 
                 for o = 1, tankPixels[5][1][1] do
-
                     
-                    monitor.setCursorPos((3 + o), (12 + (2 * i)))
+                    monitor.setCursorPos((3 + 0), 13)
                     monitor.write(" ")
 
                 end
@@ -284,26 +283,25 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
                 for o = 1, tankPixels[5][1][2] do
 
-                    monitor.setCursorPos((3 + (tankPixels[5][1][1] + o)))
-                    monitor.write(" ")
+                    monitor.setCursorPos((3 + (o + tankPixels[5][1][1])), 13)
 
                 end
 
             else
 
-                for p = 1, 2 do
+                for o = 1, 2 do
+                    
+                    monitor.setBackgroundColor(tankColors[1])
 
-                    monitor.setBackgroundColor[1]
-                
-                    for o = 1, tankPixels[5][p][1] do
-
-                        monitor.setCursorPos((3 + o), (12 + (2 * p)))
+                    for p = 1, tankPixels[5][1 + o][1] do
+                        
+                        monitor.setCursorPos((3 + p), (11 + (2 * o)))
                         monitor.write(" ")
 
                     end
 
-                    if p == 1 then
-
+                    if o == 1 then
+                        
                         monitor.setBackgroundColor(tankColors[6])
 
                     else
@@ -312,75 +310,19 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
                     end
 
-                    for o = 1, tankPixels[5][p][2] do
-                        
-                        monitor.setCursorPos((3 + (tankPixels[i][1] + o)), (12 + (p * 2)))
+                    for p = 1, tankPixels[5][1 + 0][2] do
+
+                        monitor.setCursorPos((3 + (p + tankPixels[5][1 + o][1])), (11 + (2 * p)))
                         monitor.write(" ")
+
                     end
                 end
             end
-
+            
         else
 
-            monitor.setBackgroundColor(tankColors[1])
-
-            for o = 1 , tankPixels[i][1] do
-
-                monitor.setCursorPos((3 + o), (4 + (2 * i)))
-                monitor.write(" ")
-    
-            end
-
-            if tankPixels[i] == 1 or tankPixels[i] == 2 then
-
-                monitor.setBackgroundColor(tankColors[2])
-
-            elseif tankPixels[i] == 3 then
-
-                monitor.setBackgroundColor(tankColors[3])
-
-            else
-
-                monitor.setBackgroundColor(tankColors[4])
-
-            end
-
-            for o = 1, tankPixels[i][2] do
-
-                monitor.setCursorPos((3 + (tankPixels[i][1] + o)))
-                monitor.write(" ")
-            
-            end
-        end
-    end
-
-    if DTPercent > 0 then
-
-        monitor.setCursorPos(((0.5 * (maxSize[3] - string.len(tankNames[5]))) + 1), 13)
-        monitor.write(tankNames[5])
-
-        monitor.setBackgroundColor(colors.lightGray)
-
-        for i = 1, 2 do
-            for o = 1, (maxSize[3] - 3) do
-
-                monitor.setCursorPos((o + 2), (15 + i))
-                monitor.write(" ")
-            
-            end
         end
 
-    else
-
-        for i = 1, 2 do
-
-            text = tankNames[i + 5]
-            textLength = string.len(text)
-
-            monitor.setCursorPos(((0.5 * (maxSize[3] - textLength)) + 1), (11 + (2 * i)))
-            monitor.write(text)
-        
-        end
     end
 end
 

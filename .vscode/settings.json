@@ -7,6 +7,14 @@
     "Lua.diagnostics.globals": [
         "colors",
         "textutils",
-        "peripheral"
+        "peripheral",
+        "DTPercent",
+        "tankNames",
+        "term",
+        "fs",
+        "exit",
+        "http",
+        "mekanismFusionAPI",
+        "interfaceAPI"
     ]
 }
