@@ -12,8 +12,8 @@ function time(monitor, maxSize)
     monitor.setBackgroundColor(colors.lightGray)
     monitor.setTextColor(colors.black)
 
-    time1 = textutils.formatTime(os.time(), true)
-    day1 = tostring(os.day())
+    local time1 = textutils.formatTime(os.time(), true)
+    local day1 = tostring(os.day())
 
     if string.len(time1) == 4 then
 
