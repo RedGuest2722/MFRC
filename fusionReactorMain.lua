@@ -6,40 +6,39 @@ main script for the fusion reactor.
 
 -- Varibles
 
-local AdvanceAPI = nil
-local InterfaceAPI = nil
+    -- Name set
 
-Setup = require("Setup.lua")
+local logicPort     = "fusionReactorLogicAdapter_0" -- please find the peripheral name of the Fusion Reactor Port.
+local monitorName   = "monitor" -- please find the peripheral name of the monitor.
 
 
-if fs.exists("/Moduals/AdvanceFuisionAPI.lua") then
+local mekanismAPI   = require("mekanismFuisionAPI")
+local interfaceAPI  = require("interface")
+local advancedAPI   = nil
 
-    AdvanceAPI = require("/Moduals/AdvanceFuisionAPI.lua")
+local fusionLogicPort  = peripheral.find(logicport)
+local monitor          = peripheral.find(monitorName)
+
+local advanced      = false
+local monitorSize   = nil
+
+if fs.exists("/Moduals/advancedFusionAPI.lua") then
+
+    advancedAPI = require("advancedFusionAPI")
+    advanced = true
+
+end
+
+monitorSize = interfaceAPI.Initialisation(monitor)
+
+if advanced == false then
+
+
 
 else
 
-    print("Do you have the mod 'Better Fusion Reactor for Mekanism PLUS' installed? (y/n): ")
-    local choice1 = io.read()
-
-    if choice1 == "y" then
-
-        print("You can install an additional Program to auto control the reactivity and monitor it.")
-        print("Would you like to install this? (y/n):")
-
-        local choice2 = io.read()
-
-        if choice2 == "y" then
-
-            
-
 
 
 end
 
-if fs.exists("/Moduals/InterfaceAPI.lua") then
-    InterfaceAPI = os.loadAPI("/Moduals/InterfaceAPI.lua")
-end
-
-local fusionLogicPort = peripheral.find("fusionReactorLogicAdapter_0")
-local monitor         = peripheral.find("monitor")
-
+print("here")

@@ -196,7 +196,7 @@ local function redrawBars(monitor, maxSize, filledCapcities)
 
 end
 
-local function Init(monitor)
+local function Initialisation(monitor)
 
     monitor.setTextScale(1)
     monitor.setBackgroundColor(colors.black)
@@ -215,15 +215,5 @@ local function Init(monitor)
     drawTextInit(monitor, maxSize, 0)
 
     return maxSize
-
-end
-
-local maxSize = Init(peripheral.find("monitor"))
-
-while true do
-
-    time(peripheral.find("monitor"), maxSize)
-    redrawBars(peripheral.find("monitor"), maxSize, {10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5, 10, 0.5})
-    os.sleep(0.05)
 
 end
