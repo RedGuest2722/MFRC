@@ -9,9 +9,12 @@ main script for the fusion reactor.
 local AdvanceAPI = nil
 local InterfaceAPI = nil
 
+Setup = require("Setup.lua")
 
-if fs.exists("/Moduals/AdvanceFuisionAPI.lua") then 
-    AdvanceAPI = os.loadAPI("/Moduals/AdvanceFuisionAPI.lua")
+
+if fs.exists("/Moduals/AdvanceFuisionAPI.lua") then
+
+    AdvanceAPI = require("/Moduals/AdvanceFuisionAPI.lua")
 
 else
 
@@ -27,17 +30,7 @@ else
 
         if choice2 == "y" then
 
-            print("installing additional API.")
-
-            -- Get file from repo
-            local handle = http.get(repo_main .. file)
-            local content = handle.readAll()
-            handle.close()
-
-            -- Save file locally in the correct directory
-            local fileHandle = fs.open(file, "w")
-            fileHandle.write(content)
-            fileHandle.close()
+            
 
 
 
