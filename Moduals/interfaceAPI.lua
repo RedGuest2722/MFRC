@@ -39,7 +39,7 @@ function time(monitor, maxSize)
 
     end
 
-    day_time = day2 .. " Time: " .. time2
+    day_time = "Day: " .. day2 .. " Time: " .. time2
 
     monitor.setCursorPos((maxSize[1] - string.len(day_time)), 2)
     monitor.write(day_time)
@@ -242,16 +242,18 @@ function redrawBars(monitor, maxSize, tankSize, filledCapcities)
 
         if i == 5 then
 
-            for o in filledCapcities[i] then
+            for o in filledCapcities[i] do
 
-                local colored = round(tankSize * filledCapacities[i][o])
+                local colored = round(tankSize * filledCapacities[5][o])
                 local white = (tankSize - colored)
 
-                tankPixels[i][o] = {white, colored}
+                tankPixels[5][o] = {white, colored}
+
+            end
 
         else
 
-            local colored = round(tankSize * filledCapacities[i][o])
+            local colored = round(tankSize * filledCapacities[i])
             local white = (tankSize - colored)
 
             tankPixels[i] = {white, colored}
