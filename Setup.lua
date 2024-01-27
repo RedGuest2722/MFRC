@@ -9,6 +9,8 @@ repositoryMain = "https://raw.githubusercontent.com/RedGuest2722/Radioactivity/D
 local files = {"/Startup.lua", "/fusionReactorMain.lua", "/Moduals/interfaceAPI.lua", "/Moduals/mekanismFusionAPI.lua", "/Moduals/advancedFusionAPI.lua"}
 
 
+local Setup = {}
+
 local function download(file)
 
     -- Get file from repo
@@ -72,7 +74,7 @@ if http.checkURL(repositoryMain) then
 
     if choice2 == "y" then
 
-        os.run({}, files[1])
+        os.load({}, files[1])
 
     end
 

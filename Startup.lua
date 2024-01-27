@@ -4,10 +4,6 @@
 
 ]]
 
--- APIs / Programs:
-
-Setup = require("Setup")
-
 -- Varibles Initialisation:
 
 local exists = {
