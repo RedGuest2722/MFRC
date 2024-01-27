@@ -311,11 +311,11 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
                     for o = 1, tankPixels[5][o][2] do
                         
-                        monitor.setCursorPos((3 + (tankPixels[i][1] + o)), )
+                        monitor.setCursorPos((3 + (tankPixels[i][1] + o)), (12 + (p * 2)))
                         monitor.write(" ")
-            
+                    end
+                end
             end
-
 
         else
 
