@@ -76,7 +76,7 @@ if http.checkURL(repositoryMain) then
 
     end
 
-    print("\nAll files have been downloaded.\nWould you like to start the program? (y/n)")
+    print("\nAll files have been downloaded.\n\nWould you like to start the program? (y/n)")
 
     local choice2 = io.read()
 
