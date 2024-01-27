@@ -321,8 +321,36 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
             
         else
 
-        end
+            monitor.setBackgroundColor(tankColors[1])
 
+            for o = 1, tankPixels[i][1] do
+                
+                monitor.setCursorPos((3 + o), (3 + (2 * i)))
+                monitor.write(" ")
+
+            end
+
+            if i == 1 or i == 2 then
+                
+                monitor.setBackgroundColor(tankColors[2])
+
+            elseif i == 3 then
+
+                monitor.setBackgroundColor(tankColors[3])
+
+            else
+
+                monitor.setBackgroundColor(tankColors[4])
+
+            end
+
+            for o = 1, tankPixels[i][2] do
+                
+                monitor.setCursorPos((3 + (o + tankPixels[i][1])), (3 + (2 * i)))
+                monitor.write(" ")
+
+            end
+        end
     end
 end
 
