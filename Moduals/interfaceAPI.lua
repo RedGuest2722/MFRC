@@ -7,7 +7,7 @@
 ]]--
 
 
-local function time(monitor, maxSize)
+function time(monitor, maxSize)
 
     monitor.setBackgroundColor(colors.lightGray)
     monitor.setTextColor(colors.black)
