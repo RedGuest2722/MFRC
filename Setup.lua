@@ -9,6 +9,14 @@ repositoryMain = "https://raw.githubusercontent.com/RedGuest2722/Radioactivity/D
 local files = {"/Startup.lua", "/fusionReactorMain.lua", "/Moduals/interfaceAPI.lua", "/Moduals/mekanismFusionAPI.lua", "/Moduals/advancedFusionAPI.lua"}
 
 
+for i in ipairs(files) do
+    if fs.exists(files[i]) then
+
+        fs.delete(files[i])
+
+    end
+end
+
 local Setup = {}
 
 local function download(file)
