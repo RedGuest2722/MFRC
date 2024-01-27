@@ -12,8 +12,8 @@ local logicPort     = "fusionReactorLogicAdapter_0" -- please find the periphera
 local monitorName   = "monitor" -- please find the peripheral name of the monitor.
 
 
-local mekanismAPI   = require("mekanismFuisionAPI")
-local interfaceAPI  = require("interface")
+local mekanismAPI   = os.loadAPI("mekanismFuisionAPI")
+local interfaceAPI  = os.loadAPI("interface")
 local advancedAPI   = nil
 
 local fusionLogicPort  = peripheral.find(logicport)
@@ -24,7 +24,7 @@ local monitorSize   = nil
 
 if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
-    advancedAPI = require("advancedFusionAPI")
+    advancedAPI = os.loadAPI("advancedFusionAPI")
     advanced = true
 
 end
@@ -32,6 +32,11 @@ end
 monitorSize = interfaceAPI.Initialisation(monitor)
 
 if advanced == false then
+
+    reactorStatus = mekanismAPI.getData(fusionLogicPort)
+    monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+
+    while true do
 
 
 

@@ -74,7 +74,7 @@ if http.checkURL(repositoryMain) then
 
     if choice2 == "y" then
 
-        os.load({}, files[1])
+        os.run({}, files[1])
 
     end
 

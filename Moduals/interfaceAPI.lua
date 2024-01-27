@@ -196,7 +196,7 @@ local function redrawBars(monitor, maxSize, filledCapcities)
 
 end
 
-local function Initialisation(monitor)
+local function initialisation(monitor, DTfuel)
 
     monitor.setTextScale(1)
     monitor.setBackgroundColor(colors.black)
@@ -212,7 +212,7 @@ local function Initialisation(monitor)
     drawBackground(monitor, maxSize)
     drawBorder(monitor, maxSize)
     time(monitor, maxSize)
-    drawTextInit(monitor, maxSize, 0)
+    drawTextInit(monitor, maxSize, DTfuel)
 
     return maxSize
 
