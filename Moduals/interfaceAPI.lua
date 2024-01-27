@@ -241,11 +241,11 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
     end
 
-    for i, q in ipairs(filledCapacities) do
+    for i in ipairs(filledCapacities) do
 
         if i == 5 then
 
-            for o, w in ipairs(filledCapacities[i]) do
+            for o in ipairs(filledCapacities[i]) do
 
                 local colored = round(tankSize * filledCapacities[5][o])
                 local white = (tankSize - colored)
