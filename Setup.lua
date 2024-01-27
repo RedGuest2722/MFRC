@@ -82,6 +82,7 @@ if http.checkURL(repositoryMain) then
 
     if choice2 == "y" then
 
+        term.clear()
         os.run({}, files[1])
 
     end

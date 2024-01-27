@@ -33,7 +33,7 @@ end
 
 
 local reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-local monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+local monitorSize, tankSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
 
 
 if advanced == false then
@@ -41,7 +41,7 @@ if advanced == false then
     while true do
 
         reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        interfaceAPI.redrawBars(monitor, monitorSize, reactorStatus)
+        interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 
@@ -52,7 +52,7 @@ else
     while true do
 
         reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        interfaceAPI.redrawBars(monitor, monitorSize, reactorStatus)
+        interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 

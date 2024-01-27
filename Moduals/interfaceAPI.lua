@@ -127,6 +127,8 @@ local function drawBorder(monitor, maxSize)
 
         end
     end
+
+    return (maxSize[3] - 5)
 end
 
 local function drawBackground(monitor, maxSize)
@@ -204,10 +206,60 @@ local function drawTextInit(monitor, maxSize, DTPercent)
     end
 end
 
-function redrawBars(monitor, maxSize, filledCapcities)
+function redrawBars(monitor, maxSize, tankSize, filledCapcities)
 
+    local DTHere = true
+    local tankColors = {colors.white, colors.red, colors.blue, colors.lightGray, colors.purple, colors.lime}
+    local tankPixels = {nil, nil, nil, nil, {nil, nil, nil}}
 
+    local function round(num)
 
+        local numWhole = math.floor(num)
+        local numDecimal = (num - numwhole)
+        local numRound = nil
+
+        if numDecimal < 0.5 then
+
+            numRound = math.floor(num)
+
+        else
+
+            numRound = math.ceil(num)
+
+        end
+
+        return numRound
+
+    end
+
+    if filledCapcities[5][1] == 0 then
+
+        DTHere = false
+
+    end
+
+    for i in ipairs(filledCapcities) do
+
+        if i == 5 then
+
+            for o in filledCapcities[i] then
+
+                local colored = round(tankSize * filledCapacities[i][o])
+                local white = (tankSize - colored)
+
+                tankPixels[i][o] = {white, colored}
+
+        else
+
+            local colored = round(tankSize * filledCapacities[i][o])
+            local white = (tankSize - colored)
+
+            tankPixels[i] = {white, colored}
+
+        end
+    end
+
+    print(tankPixels)
 end
 
 function initialisation(monitor, DTfuel)
@@ -224,10 +276,10 @@ function initialisation(monitor, DTfuel)
     local maxSize = {max_X, max_Y, midBorder, tankSize}
 
     drawBackground(monitor, maxSize)
-    drawBorder(monitor, maxSize)
+    local tankSize = drawBorder(monitor, maxSize)
     time(monitor, maxSize)
     drawTextInit(monitor, maxSize, DTfuel)
 
-    return maxSize
+    return maxSize, tankSize
 
 end
