@@ -6,16 +6,16 @@ this runs some commands for the main script
 
 function getData(port)
 
-    local plasmTemp = port.getPlasmaTemperature()
-    local PlasmMax  = port.getMaxPlasmaTemperature()
+    local plasmaTemp = port.getPlasmaTemperature()
+    local PlasmaMax  = port.getMaxPlasmaTemperature(true)
     
-    local plasma = {plasmaTemp, plasmaMax}
+    local plasma = (plasmaTemp / PlasmaMax)
 
 
     local caseTemp = port.getCaseTemperature()
-    local caseMax  = port.getMaxCasingTemperature
+    local caseMax  = port.getMaxCasingTemperature(true)
 
-    local case = {caseTemp, caseMax}
+    local case = (caseTemp / caseMax)
 
 
     local water = port.getWaterFilledPercentage()
