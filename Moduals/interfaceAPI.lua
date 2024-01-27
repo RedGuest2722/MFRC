@@ -215,7 +215,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
     local function round(num)
 
         local numWhole = math.floor(num)
-        local numDecimal = (num - numwhole)
+        local numDecimal = (num - numWhole)
         local numRound = nil
 
         if numDecimal < 0.5 then
