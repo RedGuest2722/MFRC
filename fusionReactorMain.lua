@@ -15,8 +15,8 @@ local monitorName   = "monitor" -- please find the peripheral name of the monito
 os.loadAPI("/Moduals/mekanismFusionAPI.lua")
 os.loadAPI("/Moduals/interfaceAPI.lua")
 
-local fusionLogicPort = peripheral.find(logicPort)
-local monitor         = peripheral.find(monitorName)
+local fusionLogicPort = peripheral.wrap(logicPort)
+local monitor         = peripheral.wrap(monitorName)
 
 local advancedAPI   = nil
 local advanced      = false
@@ -31,8 +31,8 @@ if fs.exists("/Moduals/advancedFusionAPI.lua") then
 end
 
 
-reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+local reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
+local monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
 
 
 if advanced == false then
