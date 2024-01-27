@@ -192,7 +192,7 @@ end
 
 local function redrawBars(monitor, maxSize, filledCapcities)
 
-
+    
 
 end
 

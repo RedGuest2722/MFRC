@@ -21,6 +21,7 @@ local monitor          = peripheral.find(monitorName)
 
 local advanced      = false
 local monitorSize   = nil
+local reactorStatus = nil
 
 if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
@@ -29,23 +30,32 @@ if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
 end
 
-monitorSize = interfaceAPI.Initialisation(monitor)
+
+reactorStatus = mekanismAPI.getData(fusionLogicPort)
+monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+
 
 if advanced == false then
 
-    reactorStatus = mekanismAPI.getData(fusionLogicPort)
-    monitorSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+    while true do
+
+        reactorStatus = mekanismAPI.getData(fusionLogicPort)
+        interfaceAPI.redrawBars(monitor, monitorSize, reactorStatus)
+        interfaceAPI.time(monitor, monitorSize)
+        os.sleep(0.05)
+
+    end
+    
+else
 
     while true do
 
-        --
+        reactorStatus = mekanismAPI.getData(fusionLogicPort)
+        interfaceAPI.redrawBars(monitor, monitorSize, reactorStatus)
+        interfaceAPI.time(monitor, monitorSize)
+        os.sleep(0.05)
 
     end
-
-else
-
-    --
-
 end
 
 print("here")
