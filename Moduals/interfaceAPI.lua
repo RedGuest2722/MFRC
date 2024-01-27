@@ -206,7 +206,7 @@ local function drawTextInit(monitor, maxSize, DTPercent)
     end
 end
 
-function redrawBars(monitor, maxSize, tankSize, filledCapcities)
+function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
     local DTHere = true
     local tankColors = {colors.white, colors.red, colors.blue, colors.lightGray, colors.purple, colors.lime}
@@ -232,17 +232,17 @@ function redrawBars(monitor, maxSize, tankSize, filledCapcities)
 
     end
 
-    if filledCapcities[5][1] == 0 then
+    if filledCapacities[5][1] == 0 then
 
         DTHere = false
 
     end
 
-    for i in ipairs(filledCapcities) do
+    for i in ipairs(filledCapacities) do
 
         if i == 5 then
 
-            for o in filledCapcities[i] do
+            for o in filledCapacities[i] do
 
                 local colored = round(tankSize * filledCapacities[5][o])
                 local white = (tankSize - colored)
