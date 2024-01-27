@@ -4,7 +4,7 @@ this runs some commands for the main script
 
 ]]--
 
-local function getData(port)
+function getData(port)
 
     plasmTemp = port.getPlasmaTemperature()
     PlasmMax  = port.getMaxPlasmaTemperature()
@@ -27,7 +27,7 @@ local function getData(port)
     deutirium = port.getDeuteriumFilledPercentage
     
     fuel = {DTfuel, tritium, deutirium}
-    
+
 
     return {plasma, case, water, steam, fuel}
     

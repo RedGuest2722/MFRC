@@ -76,14 +76,14 @@ local function efficiencyLevelChange(cE)
 
 end
 
-local function ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
+function ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
 
-    changeNegative = false
-    firstRun = true
+    local changeNegative = false
+    local firstRun = true
 
     while round(port.getEfficiency()) < 80 do
 
-        curEffi, chaEffi, errLev = check(port, lastEffi)
+        local curEffi, chaEffi, errLev = check(port, lastEffi)
         
         if firstRun == false and chaEffi < 0 then
 
@@ -98,9 +98,9 @@ local function ramping(port, lastEffi, rC) -- this allows the program to by pass
             end
         end
 
-        firstRun = false
+        local firstRun = false
 
-        levelChange = efficiencyLevelChange(curEffi)
+        local levelChange = efficiencyLevelChange(curEffi)
 
         if changeNegative == false then
 
@@ -115,7 +115,7 @@ local function ramping(port, lastEffi, rC) -- this allows the program to by pass
         end
 
         lastEffi = curEffi
-        rC = rC + 1
+        local rC = rC + 1
 
         os.sleep(2)
     end
@@ -123,14 +123,14 @@ local function ramping(port, lastEffi, rC) -- this allows the program to by pass
     return lastEffi, rC
 end
 
-local function stable(port, lastEffi, rC)
+function stable(port, lastEffi, rC)
 
-    changeNegative = false
-    firstRun = true
+    local changeNegative = false
+    local firstRun = true
 
     while round(port.getEfficiency()) > 80 do
 
-        curEffi, chaEffi, errLev = check(port, lastEffi)
+        local curEffi, chaEffi, errLev = check(port, lastEffi)
         
         if chaEffi < 0 then
 
@@ -159,8 +159,8 @@ local function stable(port, lastEffi, rC)
 
         end
 
-        lastEffi = curEffi
-        rC = rC + 1
+        local lastEffi = curEffi
+        local rC = rC + 1
 
         os.sleep(4)
     end

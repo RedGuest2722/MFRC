@@ -190,13 +190,13 @@ local function drawTextInit(monitor, maxSize, DTPercent)
     end
 end
 
-local function redrawBars(monitor, maxSize, filledCapcities)
+function redrawBars(monitor, maxSize, filledCapcities)
 
-    
+
 
 end
 
-local function initialisation(monitor, DTfuel)
+function initialisation(monitor, DTfuel)
 
     monitor.setTextScale(1)
     monitor.setBackgroundColor(colors.black)
