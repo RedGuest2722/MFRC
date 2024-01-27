@@ -242,7 +242,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
         if i == 5 then
 
-            for o in filledCapacities[i] do
+            for o in ipairs(filledCapacities[i]) do
 
                 local colored = round(tankSize * filledCapacities[5][o])
                 local white = (tankSize - colored)
@@ -261,7 +261,124 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
         end
     end
 
-    print(tankPixels)
+    for i = 1, 4 do
+
+        if i == 5 then
+
+            if tankPixels[5][1][2] ~= 0 then
+
+                monitor.setBackgroundColor(tankColors[1])
+
+                for o in 1, tankPixels[5][1][1] do
+
+                    
+                    monitor.setCursorPos((3 + o), (12 + (2 * i)))
+                    monitor.write(" ")
+
+                end
+
+                monitor.setBackgroundColor(tankColors[5])
+
+                for o in 1, tankPixels[5][1][2] do
+
+                    monitor.setCursorPos((3 + (tankPixels[5][1][1] + o)))
+                    monitor.write(" ")
+
+                end
+
+            else
+
+                for p in 1, 2 do
+
+                    monitor.setBackgroundColor[1]
+                
+                    for o = 1, tankPixels[5][o][1]
+
+                        monitor.setCursorPos((3 + o), (12 + (2 * p)))
+                        monitor.write(" ")
+
+                    end
+
+                    if p == 1 then
+
+                        monitor.setBackgroundColor(tankColors[6])
+
+                    else
+
+                        monitor.setBackgroundColor(tankColors[2])
+
+                    end
+
+                    for o = 1, tankPixels[5][o][2] do
+                        
+                        monitor.setCursorPos((3 + (tankPixels[i][1] + o)), )
+                        monitor.write(" ")
+            
+            end
+
+
+        else
+
+            monitor.setBackgroundColor(tankColors[1])
+
+            for o = 1 , tankPixels[i][1] do
+
+                monitor.setCursorPos((3 + o), (4 + (2 * i)))
+                monitor.write(" ")
+    
+            end
+
+            if tankPixels[i] == 1 or tankPixels[i] == 2 then
+
+                monitor.setBackgroundColor(tankColors[2])
+
+            elseif tankPixels[i] == 3 then
+
+                monitor.setBackgroundColor(tankColors[3])
+
+            else
+
+                monitor.setBackgroundColor(tankColors[4])
+
+            end
+
+            for o = 1, tankPixels[i][2] do
+
+                monitor.setCursorPos((3 + (tankPixels[i][1] + o)))
+                monitor.write(" ")
+            
+            end
+        end
+    end
+
+    if DTPercent > 0 then
+
+        monitor.setCursorPos(((0.5 * (maxSize[3] - string.len(tankNames[5]))) + 1), 13)
+        monitor.write(tankNames[5])
+
+        monitor.setBackgroundColor(colors.lightGray)
+
+        for i = 1, 2 do
+            for o = 1, (maxSize[3] - 3) do
+
+                monitor.setCursorPos((o + 2), (15 + i))
+                monitor.write(" ")
+            
+            end
+        end
+
+    else
+
+        for i = 1, 2 do
+
+            text = tankNames[i + 5]
+            textLength = string.len(text)
+
+            monitor.setCursorPos(((0.5 * (maxSize[3] - textLength)) + 1), (11 + (2 * i)))
+            monitor.write(text)
+        
+        end
+    end
 end
 
 function initialisation(monitor, DTfuel)
