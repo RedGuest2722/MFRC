@@ -16,8 +16,8 @@ local mekanismAPI   = os.loadAPI("/Moduals/mekanismFusionAPI.lua")
 local interfaceAPI  = os.loadAPI("/Moduals/interfaceAPI.lua")
 local advancedAPI   = nil
 
-local fusionLogicPort   = peripheral.wrap(logicport)
-local monitor           = peripheral.wrap(monitorName)
+local fusionLogicPort = peripheral.find(logicPort)
+local monitor         = peripheral.find(monitorName)
 
 local advanced      = false
 local monitorSize   = nil
