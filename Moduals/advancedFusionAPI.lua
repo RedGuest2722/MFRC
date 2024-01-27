@@ -167,20 +167,3 @@ local function stable(port, lastEffi, rC)
 
     return lastEffi, rC
 end
-
-while true do
-    if round(logicPort.getEfficiency()) > 80 then
-        
-        lastEffi, roundCounter = stable(logicPort, lastEffi, roundCounter)
-
-    elseif round(logicPort.getEfficiency()) ~= 0 then
-
-        lastEffi, roundCounter = ramping(logicPort, lastEffi, roundCounter)
-
-    else 
-
-        print("\n" .. time() .. "\nReactor Status: Unreactive")
-        os.sleep(4)
-
-    end
-end
