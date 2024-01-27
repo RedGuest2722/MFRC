@@ -27,15 +27,15 @@ function time(monitor, maxSize)
 
     day_time = day .. " Time: " .. time2
 
-    monitor.setCursorPos(maxSize[1] - string.len(day_time), 2)
+    monitor.setCursorPos((maxSize[1] - string.len(day_time)), 2)
     monitor.write(day_time)
-    monitor.setCursorPos(maxSize[1] - 12, 2)
+    monitor.setCursorPos((maxSize[1] - 12), 2)
     monitor.setBackgroundColor(colors.gray)
     monitor.write(" ")
 
     for i = 1, (maxSize[1] - (19 + maxSize[3])) do
 
-        monitor.setCursorPos((maxSize[3] + i), 2)
+        monitor.setCursorPos(((maxSize[3] - 1) + i), 2)
         monitor.write(" ")
 
     end
