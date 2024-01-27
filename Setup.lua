@@ -83,6 +83,7 @@ if http.checkURL(repositoryMain) then
     if choice2 == "y" then
 
         os.run({}, files[1])
+        error("Exited program")
 
     end
 
@@ -104,7 +105,7 @@ while keyNotPressed do
 
         keyNotPressed = false
         term.clear()
-        exit()
+        error("Exited program")
 
     end
 end
