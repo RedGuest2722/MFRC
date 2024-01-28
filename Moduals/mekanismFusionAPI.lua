@@ -24,7 +24,7 @@ function getData(port)
 
     local DTfuel    = port.getDTFuelFilledPercentage()
     local tritium   = port.getTritiumFilledPercentage()
-    local deutirium = port.getDeuteriumFilledPercentage
+    local deutirium = port.getDeuteriumFilledPercentage()
     
     local fuel = {DTfuel, tritium, deutirium} 
 
