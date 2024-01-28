@@ -4,13 +4,15 @@ main script for the fusion reactor.
 
 ]]--
 
+
+
 -- Varibles
 
     -- Name set
 
                                                     -- if they area a side please specify that
 local logicPort     = "fusionReactorLogicAdapter_0" -- please find the peripheral name of the Fusion Reactor Port.
-local monitorName   = "monitor_4"                   -- please find the peripheral name of the monitor.
+local monitorName   = "left"                   -- please find the peripheral name of the monitor.
 
 
 local mekanismAPI = require("Moduals.mekanismFusionAPI")

@@ -348,7 +348,7 @@ function interfaceAPI:redrawBars(filledCapacities) -- Redraws bars to show Level
 
                 for o = 1, tankPixels[5][1][1] do
                     
-                    self.monitor.setCursorPos((3 + 0), 14)
+                    self.monitor.setCursorPos((3 + o), 14)
                     self.monitor.write(" ")
 
                 end

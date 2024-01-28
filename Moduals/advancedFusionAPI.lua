@@ -19,7 +19,7 @@ local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
-interfaceAPI = require("Moduals.interfaceAPI")
+local interfaceAPI = require("Moduals.interfaceAPI")
 
 ---@class advancedFusionAPI
 local advancedFusionAPI = {}
