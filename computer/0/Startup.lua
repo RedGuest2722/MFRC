@@ -14,7 +14,7 @@ local exists = {
     false, -- Advanced API
 }
 
-local filePath = {shell.resolveProgram("Startup.lua"), shell.resolveProgram("fusionReactorMain.lua"), shell.resolveProgram("interfaceAPI.lua"), shell.resolveProgram("mekanismFusionAPI.lua"), shell.resolveProgram("advancedFusionAPI.lua")}
+local filePath = {shell.resolve("Startup.lua"), shell.resolve("fusionReactorMain.lua"), shell.resolve("interfaceAPI.lua"), shell.resolve("mekanismFusionAPI.lua"), shell.resolve("advancedFusionAPI.lua")}
 local files = {"Startup.lua", "fusionReactorMain.lua", "interfaceAPI.lua", "mekanismFusionAPI.lua", "advancedFusionAPI.lua"}
 
 for i = 1, 4 do
