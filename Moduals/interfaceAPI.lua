@@ -58,7 +58,7 @@ function time(monitor, maxSize)
     end
 end
 
-local function drawBorder(monitor, maxSize)
+local function drawBorder(monitor, maxSize, advanced)
 
     monitor.setBackgroundColor(colors.gray)
 
@@ -131,15 +131,18 @@ local function drawBorder(monitor, maxSize)
         end
     end
 
-    -- Horizontal Right Middle Border
+    if advanced then
+        
+        -- Horizontal Right Middle Border
 
-    monitor.setBackgroundColor(colors.gray)
+        monitor.setBackgroundColor(colors.gray)
 
-    for i = 1, (maxSize[1] - (maxSize[3] + 1))
+        for i = 1, (maxSize[1] - (maxSize[3] + 1))
 
-        monitor.setCursorPos((maxSize[3] + i), (3 + ((maxSize[2] - 4) / 2))
-        monitor.write(" ")
+            monitor.setCursorPos((maxSize[3] + i), (3 + ((maxSize[2] - 4) / 2))
+            monitor.write(" ")
 
+        end
     end
 end
 
@@ -357,7 +360,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
     end
 end
 
-function initialisation(monitor, DTfuel)
+function initialisation(monitor, DTfuel, advanced)
 
     monitor.setTextScale(1)
     monitor.setBackgroundColor(colors.black)
@@ -371,7 +374,7 @@ function initialisation(monitor, DTfuel)
     local maxSize = {max_X, max_Y, midBorder, tankSize}
 
     drawBackground(monitor, maxSize)
-    drawBorder(monitor, maxSize)
+    drawBorder(monitor, maxSize, advanced)
     time(monitor, maxSize)
     drawTextInit(monitor, maxSize, DTfuel)
 

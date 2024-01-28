@@ -33,10 +33,10 @@ end
 term.clear()
 
 local reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-local monitorSize, tankSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
+local monitorSize, tankSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1], advanced)
 
 
-if advanced == false then
+if advanced then
 
     while true do
 
