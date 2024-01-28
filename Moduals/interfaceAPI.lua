@@ -240,11 +240,24 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
             for o in ipairs(filledCapacities[i]) do
 
-                local colored = round(tankSize * filledCapacities[5][o])
-                local white = (tankSize - colored)
+                local colored = nil
+                local white = nil
 
-                tankPixels[5][o] = {white, colored}
+                if filledCapacities[5][o] > 0 then
 
+                    colored = round(tankSize * filledCapacities[5][o])
+                    white = (tankSize - colored)
+
+                    tankPixels[5][o] = {white, colored}
+                
+                else
+
+                    colored = 0
+                    white = (tankSize - colored)
+
+                    tankPixels[5][o] = {white, colored}
+                
+                end
             end
 
         else
