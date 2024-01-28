@@ -375,6 +375,19 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
     end
 end
 
+function updateText(monitor, maxSize, text)
+
+    monitor.setBackgroundColor(colors.lightGray)
+    monitor.setTextColor(colors.black)
+
+    monitor.setCursorPos((maxSize[2] - (2 + string.len(text[2]))), 6)
+    monitor.write(text[2])
+
+    monitor.setCursorPos((maxSize[2] - (2 + string.len(tostring(text[3])))), 7)
+    monitor.write(tostring(text[2]))
+
+end
+
 function initialisation(monitor, DTfuel, advanced)
 
     monitor.setTextScale(1)

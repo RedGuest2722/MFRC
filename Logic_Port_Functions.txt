@@ -42,7 +42,7 @@ Fuel Functions
 
 Other Functions:
 
-    getPassiveGeneration
+    getPassiveGeneration -- power gen
 
     getProductionRate
 

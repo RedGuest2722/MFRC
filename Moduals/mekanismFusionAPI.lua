@@ -4,6 +4,28 @@ this runs some commands for the main script
 
 ]]--
 
+local function round(num, decimalPlace)
+
+    local numDec = (num * 10^(decimalPlace))
+
+    local numWhole = math.floor(numDec)
+    local numDecimal = (numDec - numWhole)
+    local numRound = nil
+
+    if numDecimal < 0.5 then
+
+        numRound = math.floor(numDec)
+
+    else
+
+        numRound = math.ceil(numDec)
+
+    end
+
+    return (numRound / 10^(decimalPlace))
+
+end
+
 function getData(port)
 
     local plasmaTemp = port.getPlasmaTemperature()
@@ -65,6 +87,42 @@ end
 
 function getBasicData(port)
 
+    local hohlraum = false
+    local powerGenStr = nil
 
+    local powerGen = port.getPassiveGeneration(false)/10
 
+    if powerGen > 10^(9) then
+
+        powerGenStr = tostring(round(powerGen), -9) .. " GFE"
+
+    elseif powerGen > 10^(6) then
+
+        powerGenStr = tostring(round(powerGen, -6)) .. " MFE"
+
+    elseif powerGen > 10^(3) then
+
+        powerGenStr = tostring(round(powerGen, -3)) .. " kFE"
+
+    elseif powerGen > 10^(0) then
+
+        powerGenStr = tostring(round(powerGen, 0)) .. " FE"
+
+    else
+
+        powerGenStr = "0 FE"
+
+    end
+
+    local injRate = port.getInjectionRate()
+
+    local hohlraumNum = port.getHohlraum()[1]
+
+    if hohlraumNum == 1 then
+
+        hohlraum = true
+
+    end
+
+    return {hohlraum, powerGenStr, injRate}
 end
