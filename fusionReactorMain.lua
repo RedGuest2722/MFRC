@@ -19,7 +19,6 @@ os.loadAPI("/Moduals/interfaceAPI.lua")
 local fusionLogicPort = peripheral.wrap(logicPort)
 local monitor         = peripheral.wrap(monitorName)
 
-local advancedAPI   = nil
 local advanced      = false
 local monitorSize   = nil
 local reactorStatus = nil

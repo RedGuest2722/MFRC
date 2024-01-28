@@ -211,7 +211,6 @@ end
 
 function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
-    local DTHere = true
     local tankColors = {colors.white, colors.red, colors.blue, colors.lightGray, colors.purple, colors.lime}
     local tankPixels = {nil, nil, nil, nil, {nil, nil, nil}}
 
@@ -232,12 +231,6 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
         end
 
         return numRound
-
-    end
-
-    if filledCapacities[5][1] == 0 then
-
-        DTHere = false
 
     end
 
