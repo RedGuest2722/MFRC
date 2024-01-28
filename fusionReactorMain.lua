@@ -10,7 +10,7 @@ main script for the fusion reactor.
 
                                                     -- if they area a side please specify that
 local logicPort     = "fusionReactorLogicAdapter_0" -- please find the peripheral name of the Fusion Reactor Port.
-local monitorName   = "left"                        -- please find the peripheral name of the monitor.
+local monitorName   = "monitor_4"                        -- please find the peripheral name of the monitor.
 
 
 os.loadAPI("/Moduals/mekanismFusionAPI.lua")
@@ -41,8 +41,9 @@ if advanced then
     while true do
 
         reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        mekanismStat = mekanismFuisionAPI.getBasicData(fusionLogicPort)
+        mekanismStat = mekanismFusionAPI.getBasicData(fusionLogicPort)
         interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
+        updateText(monitor, maxSize, mekanismStat)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 
@@ -53,8 +54,9 @@ else
     while true do
 
         reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        mekanismStat = mekanismFuisionAPI.getBasicData(fusionLogicPort)
+        mekanismStat = mekanismFusionAPI.getBasicData(fusionLogicPort)
         interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
+        updateText(monitor, maxSize, mekanismStat)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 
