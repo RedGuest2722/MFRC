@@ -19,6 +19,7 @@ local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
+---@class advancedFusionAPI
 local advancedFusionAPI = {}
 
 local function round(num, decimalPlace)

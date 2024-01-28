@@ -6,6 +6,8 @@
     
 ]]--
 
+
+---@class interfaceAPI
 local interfaceAPI = {}
 
 local function round(num, decimalPlace)

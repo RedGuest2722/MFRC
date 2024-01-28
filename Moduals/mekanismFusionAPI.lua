@@ -4,6 +4,8 @@ this runs some commands for the main script
 
 ]]--
 
+---@class mekanismFusionAPI
+
 local mekanismFusionAPI = {}
 
 local function round(num, decimalPlace)
