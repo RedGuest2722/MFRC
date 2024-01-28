@@ -139,7 +139,7 @@ local function drawBorder(monitor, maxSize, advanced)
 
         for i = 1, (maxSize[1] - (maxSize[3] + 1)) do
 
-            monitor.setCursorPos((maxSize[3] + i), (3 + ((maxSize[2] - 4) / 2))
+            monitor.setCursorPos((maxSize[3] + i), (3 + ((maxSize[2] - 4) / 2)))
             monitor.write(" ")
 
         end

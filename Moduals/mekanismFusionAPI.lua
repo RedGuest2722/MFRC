@@ -45,8 +45,11 @@ function getData(port)
 
         else
 
-            percents[i] = 1
+            if percents[i] > 1 then
 
+                percents[i] = 1
+            
+            end    
         end
     end
 
@@ -62,6 +65,6 @@ end
 
 function getBasicData(port)
 
-    
+
 
 end
