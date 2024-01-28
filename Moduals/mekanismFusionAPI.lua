@@ -4,11 +4,11 @@ this runs some commands for the main script
 
 ]]--
 
----@class mekanismFusionAPI
-
-local mekanismFusionAPI = {}
-
-local function round(num, decimalPlace)
+---@param num number Number for rounding.
+---@param decimalPlace integer Number of decimal places.
+---@return number
+---@nodiscard
+local function round(num, decimalPlace) -- Rounds number values to specified number of decimal places.
 
     local numDec = (num * 10^(decimalPlace))
 
@@ -30,27 +30,55 @@ local function round(num, decimalPlace)
 
 end
 
-function mekanismFusionAPI.getData(port)
+---@class mekanismFusionAPI
 
-    local plasmaTemp = port.getPlasmaTemperature()
-    local PlasmaMax  = port.getMaxPlasmaTemperature(true)
+local mekanismFusionAPI = {
+
+    port = "fusionReactorLogicAdapter_0"
+}
+
+---@param port string String peripheral name of the Fusion Reactor Logic Port.
+---@return boolean DTHere Returns true if DT Fuel is used by Fusion Reactor.
+---@return table self Returns a table to be used by interfaceAPI.
+function mekanismFusionAPI.init(port)
+
+    local DTHere = false
+    local self = setmetatable({}, mekanismFusionAPI) -- Meta table to be used by mekanismFusionAPI.
+
+    self.port = port
+
+    DTPerc = port.getDTFuelFilledPercentage()
+
+    if DTPerc > 0 then
+        
+        DTHere = true
+
+    end
+
+    return DTHere, self
+end
+
+function mekanismFusionAPI:getData()
+
+    local plasmaTemp = self.port.getPlasmaTemperature()
+    local PlasmaMax  = self.port.getMaxPlasmaTemperature(true)
     
     local plasma = (plasmaTemp / PlasmaMax)
 
 
-    local caseTemp = port.getCaseTemperature()
-    local caseMax  = port.getMaxCasingTemperature(true)
+    local caseTemp = self.port.getCaseTemperature()
+    local caseMax  = self.port.getMaxCasingTemperature(true)
 
     local case = (caseTemp / caseMax)
 
 
-    local water = port.getWaterFilledPercentage()
-    local steam = port.getSteamFilledPercentage()
+    local water = self.port.getWaterFilledPercentage()
+    local steam = self.port.getSteamFilledPercentage()
 
 
-    local DTfuel    = port.getDTFuelFilledPercentage()
-    local tritium   = port.getTritiumFilledPercentage()
-    local deutirium = port.getDeuteriumFilledPercentage()
+    local DTfuel    = self.port.getDTFuelFilledPercentage()
+    local tritium   = self.port.getTritiumFilledPercentage()
+    local deutirium = self.port.getDeuteriumFilledPercentage()
     
     local fuel = {DTfuel, tritium, deutirium} 
 
@@ -83,22 +111,26 @@ function mekanismFusionAPI.getData(port)
     
 end
 
-function mekanismFusionAPI.setInjectionRate(port, value)
 
-    port.setInjectionRate(setRate)
+---@param value integer This value should be even and the value to set the injection rate to.
+function mekanismFusionAPI:setInjectionRate(value)
+
+    self.port.setInjectionRate(value)
 
 end
 
-function mekanismFusionAPI.getBasicData(port)
+
+---@return table
+function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of the monitor.
 
     local hohlraum = false
     local powerGenStr = nil
 
-    local powerGen = port.getPassiveGeneration(false)/10
+    local powerGen = self.port.getPassiveGeneration(false)/10
 
     if powerGen > 10^(9) then
 
-        powerGenStr = tostring(round(powerGen), -9) .. " GFE"
+        powerGenStr = tostring(round(powerGen, -9)) .. " GFE"
 
     elseif powerGen > 10^(6) then
 
@@ -118,9 +150,9 @@ function mekanismFusionAPI.getBasicData(port)
 
     end
 
-    local injRate = port.getInjectionRate()
+    local injRate = self.port.getInjectionRate()
 
-    local hohlraumNum = port.getHohlraum()[1]
+    local hohlraumNum = self.port.getHohlraum()[1]
 
     if hohlraumNum == 1 then
 

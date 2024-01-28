@@ -19,6 +19,8 @@ local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
+interfaceAPI = require("Moduals.interfaceAPI")
+
 ---@class advancedFusionAPI
 local advancedFusionAPI = {}
 
@@ -46,17 +48,19 @@ end
 
 local function check(port, lE)
 
-    eL = round(port.getErrorLevel()) -- find error level
+    local eL = round(port.getErrorLevel()) -- find error level
 
-    cuE = round(port.getEfficiency()) -- find current efficiency
+    local cuE = round(port.getEfficiency()) -- find current efficiency
 
-    chE = round(cuE - lE) -- change in efficiency
+    local chE = round(cuE - lE) -- change in efficiency
 
     return cuE, chE, eL
 
 end
 
 local function efficiencyLevelChange(cE)
+
+    local change = 0
 
     if cE > 98 then
 
@@ -117,12 +121,12 @@ function advancedFusionAPI.ramping(port, lastEffi, rC) -- this allows the progra
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            print("\n" .. time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\n" .. interfaceAPI.time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            print("\n" .. time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\n" .. interfaceAPI.time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
@@ -157,17 +161,17 @@ function advancedFusionAPI.stable(port, lastEffi, rC)
             end
         end
 
-        levelChange = efficiencyLevelChange(curEffi)
+        local levelChange = efficiencyLevelChange(curEffi)
 
         if changeNegative == false then
 
             port.adjustReactivity(levelChange)
-            print("\n" .. time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
+            print("\n" .. interfaceAPI.time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
 
         else
 
             port.adjustReactivity(-levelChange)
-            print("\n" .. time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
+            print("\n" .. interfaceAPI.time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
 
         end
 
