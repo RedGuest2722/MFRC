@@ -6,6 +6,27 @@
     
 ]]--
 
+local function round(num, decimalPlace)
+
+    local numDec = (num * 10^(decimalPlace))
+
+    local numWhole = math.floor(numDec)
+    local numDecimal = (numDec - numWhole)
+    local numRound = nil
+
+    if numDecimal < 0.5 then
+
+        numRound = math.floor(numDec)
+
+    else
+
+        numRound = math.ceil(numDec)
+
+    end
+
+    return (numRound / 10^(decimalPlace))
+
+end
 
 function time(monitor, maxSize)
 
@@ -161,7 +182,7 @@ local function drawBackground(monitor, maxSize)
     end
 end
 
-local function drawTextInit(monitor, maxSize, DTPercent)
+local function drawTextInit(monitor, maxSize, DTPercent, advanced)
 
     -- Program name
 
@@ -169,6 +190,14 @@ local function drawTextInit(monitor, maxSize, DTPercent)
     monitor.setTextColor(colors.black)
     monitor.setBackgroundColor(colors.lightGray)
     monitor.write("Fusion Reactor")
+
+    -- Mekanism Names
+
+    monitor.setBackgroundColor(colors.lightGray)
+    monitor.setTextColor(colors.black)
+
+    monitor.setCursorPos((maxSize[3] + 2), 5)
+    monitor.write("Status:")
 
     -- Tank Names
 
@@ -226,33 +255,13 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
     local tankColors = {colors.white, colors.red, colors.blue, colors.lightGray, colors.purple, colors.green}
     local tankPixels = {nil, nil, nil, nil, {nil, nil, nil}}
 
-    local function round(num)
-
-        local numWhole = math.floor(num)
-        local numDecimal = (num - numWhole)
-        local numRound = nil
-
-        if numDecimal < 0.5 then
-
-            numRound = math.floor(num)
-
-        else
-
-            numRound = math.ceil(num)
-
-        end
-
-        return numRound
-
-    end
-
     for i = 1, 5 do
 
         if i == 5 then
 
             for o in ipairs(filledCapacities[5]) do
 
-                colored = round(tankSize * filledCapacities[5][o])
+                colored = round((tankSize * filledCapacities[5][o]), 0)
                 white = (tankSize - colored)
 
                 tankPixels[5][o] = {white, colored}
@@ -261,7 +270,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
         else
 
-            local colored = round(tankSize * filledCapacities[i])
+            local colored = round((tankSize * filledCapacities[i]), 0)
             local white = (tankSize - colored)
 
             tankPixels[i] = {white, colored}
@@ -376,7 +385,7 @@ function initialisation(monitor, DTfuel, advanced)
     drawBackground(monitor, maxSize)
     drawBorder(monitor, maxSize, advanced)
     time(monitor, maxSize)
-    drawTextInit(monitor, maxSize, DTfuel)
+    drawTextInit(monitor, maxSize, DTfuel, advanced)
 
     return maxSize, tankSize
 

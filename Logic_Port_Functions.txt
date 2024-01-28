@@ -55,19 +55,14 @@ Other Functions:
 -- ignition temp (400000000 FE)
 
 Functions:
-    adjustReactivity
 
     getPassiveGeneration
 
     getInjectionRate
 
-    getHohlraum
+    -- getHohlraum
 
     getProductionRate
-
-    getIgnitionTemperature
-
-    getMinInjectionRate
 
 
 
