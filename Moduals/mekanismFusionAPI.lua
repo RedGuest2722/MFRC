@@ -54,10 +54,14 @@ function getData(port)
     
 end
 
-function setData(port)
+function setInjectionRate(port, value)
+
+    port.setInjectionRate(setRate)
 
 end
 
 function getBasicData(port)
+
+    
 
 end

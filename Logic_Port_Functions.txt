@@ -47,7 +47,7 @@ Other Functions:
     getProductionRate
 
     getInjectionRate
-    
+
     getHohlraum
 
     
@@ -57,24 +57,22 @@ Other Functions:
 Functions:
     adjustReactivity
 
-    setActiveCooledLogic
-
     getPassiveGeneration
 
     getInjectionRate
 
     getHohlraum
 
-    getEfficiency
-
-    setInjectionRate
-
     getProductionRate
 
     getIgnitionTemperature
 
+    getMinInjectionRate
+
+
+
     getErrorLevel
 
-    isActiveCooledLogic
+    getEfficiency
 
-    getMinInjectionRate
+    adjustReactivity

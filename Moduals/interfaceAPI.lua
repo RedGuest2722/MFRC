@@ -130,6 +130,17 @@ local function drawBorder(monitor, maxSize)
 
         end
     end
+
+    -- Horizontal Right Middle Border
+
+    monitor.setBackgroundColor(colors.gray)
+
+    for i = 1, (maxSize[1] - (maxSize[3] + 1))
+
+        monitor.setCursorPos((maxSize[3] + i), (3 + ((maxSize[2] - 4) / 2))
+        monitor.write(" ")
+
+    end
 end
 
 local function drawBackground(monitor, maxSize)

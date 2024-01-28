@@ -30,6 +30,7 @@ if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
 end
 
+term.clear()
 
 local reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
 local monitorSize, tankSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1])
