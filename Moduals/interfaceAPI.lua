@@ -6,6 +6,8 @@
     
 ]]--
 
+local interfaceAPI = {}
+
 local function round(num, decimalPlace)
 
     local numDec = (num * 10^(decimalPlace))

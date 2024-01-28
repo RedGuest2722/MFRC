@@ -4,6 +4,8 @@ this runs some commands for the main script
 
 ]]--
 
+local mekanismFusionAPI = {}
+
 local function round(num, decimalPlace)
 
     local numDec = (num * 10^(decimalPlace))

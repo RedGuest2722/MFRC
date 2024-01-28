@@ -19,16 +19,25 @@ local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
-local function round(num)
+local function round(num, decimalPlace)
 
-    return math.floor(num * 100 + 0.5) / 100
+    local numDec = (num * 10^(decimalPlace))
 
-end
+    local numWhole = math.floor(numDec)
+    local numDecimal = (numDec - numWhole)
+    local numRound = nil
 
-local function time()
-    
-    timeReady = "Day: " .. os.day() .. "   Time: " .. textutils.formatTime(os.time(), false)
-    return timeReady
+    if numDecimal < 0.5 then
+
+        numRound = math.floor(numDec)
+
+    else
+
+        numRound = math.ceil(numDec)
+
+    end
+
+    return (numRound / 10^(decimalPlace))
 
 end
 

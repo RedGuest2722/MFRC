@@ -35,10 +35,9 @@ end
 
 local function advanced()
 
-    print("\nThe additional API will now be installed.")
     download(files[5])
     os.sleep(1)
-    print("\nThe additional API has now been installed.")
+    print("Downloaded: " .. files[5])
 
 end
 
