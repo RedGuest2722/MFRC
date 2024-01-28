@@ -43,9 +43,11 @@ Fuel Functions
 Other Functions:
 
     getPassiveGeneration
+
     getProductionRate
 
     getInjectionRate
+    
     getHohlraum
 
     
@@ -53,49 +55,26 @@ Other Functions:
 -- ignition temp (400000000 FE)
 
 Functions:
-    getDTFuel
-    getTritiumFilledPercentage
-    getWaterCapacity
     adjustReactivity
-    getTritiumCapacity
+
     setActiveCooledLogic
-    getWaterNeeded
+
     getPassiveGeneration
-    getMinPos
+
     getInjectionRate
-    getWidth
-    getDeuteriumFilledPercentage
+
     getHohlraum
-    getSteamCapacity
-    getHeight
+
     getEfficiency
+
     setInjectionRate
-    getRedstoneMode
-    getSteamFilledPercentage
-    getWaterFilledPercentage
-    getDTFuelNeeded
+
     getProductionRate
-    getTritiumNeeded
-    getPlasmaTemperature
-    getDTFuelFilledPercentage
-    getMaxPos
-    isFormed
-    getCaseTemperature
-    getSteamNeeded
-    getTritium
+
     getIgnitionTemperature
+
     getErrorLevel
+
     isActiveCooledLogic
-    getDTFuelCapacity
-    getDeuterium
-    getDeuteriumNeeded
-    getSteam
+
     getMinInjectionRate
-    setLogicMode
-    getDeuteriumCapacity
-    getLength
-    getWater
-    getMaxPlasmaTemperature
-    setRedstoneMode
-    getMaxCasingTemperature
-    getLogicMode

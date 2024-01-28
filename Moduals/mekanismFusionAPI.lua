@@ -11,22 +11,12 @@ function getData(port)
     
     local plasma = (plasmaTemp / PlasmaMax)
 
-    if plasma > 1 then
-
-        plasma = 1
-
-    end
 
     local caseTemp = port.getCaseTemperature()
     local caseMax  = port.getMaxCasingTemperature(true)
 
     local case = (caseTemp / caseMax)
 
-    if case > 1 then
-
-        case = 1
-
-    end
 
     local water = port.getWaterFilledPercentage()
     local steam = port.getSteamFilledPercentage()
@@ -38,6 +28,36 @@ function getData(port)
     
     local fuel = {DTfuel, tritium, deutirium} 
 
-    return {plasma, case, water, steam, fuel}
+    local percents = {plasma, case, water, steam, fuel}
+
+    for i in ipairs(percents) do
+
+        if i == 5 then
+
+            for o in ipairs(percents[5]) do
+
+                if percents[5][o] > 1 then
+
+                    percents[5][o] = 1
+                
+                end
+            end
+
+        else
+
+            percents[i] = 1
+
+        end
+    end
+
+    return percents 
     
+end
+
+function setData(port)
+
+end
+
+function getBasicData(port)
+
 end
