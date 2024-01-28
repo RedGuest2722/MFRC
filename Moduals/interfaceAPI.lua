@@ -199,6 +199,12 @@ local function drawTextInit(monitor, maxSize, DTPercent, advanced)
     monitor.setCursorPos((maxSize[3] + 2), 5)
     monitor.write("Status:")
 
+    monitor.setCursorPos((maxSize[3] + 2), 6)
+    monitor.write("Gen Rate:")
+
+    monitor.setCursorPos((maxSize[3] + 2), 7)
+    monitor.write("Inj Rate:")
+
     -- Tank Names
 
     monitor.setBackgroundColor(colors.black)
