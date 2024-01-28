@@ -56,7 +56,7 @@ elseif exists[4] == false then
 
     print("\nWarning!: following API not installed:")
     print("\n" .. files[5])
-    print("\nIf the API above is needed, please close this program (Ctrl + T).\nThen run Stetup.lua .")
+    print("\nIf the API above is needed, please close this program (Ctrl + T).\nThen run Setup.lua .")
 
     os.sleep(5)
 

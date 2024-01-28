@@ -243,7 +243,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
                 local colored = nil
                 local white = nil
 
-                if filledCapacities[5][o] > 0 then
+                if tostring(filledCapacities[5][o]) ~= "?" then
 
                     colored = round(tankSize * filledCapacities[5][o])
                     white = (tankSize - colored)
