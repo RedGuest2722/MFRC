@@ -14,11 +14,10 @@ local exists = {
     false, -- Advanced API
 }
 
-local filePath = {shell.resolveProgram("Startup.lua"), shell.resolveProgram("fusionReactorMain.lua"), shell.resolveProgram("interfaceAPI.lua"), shell.resolveProgram("mekanismFusionAPI.lua"), shell.resolveProgram("advancedFusionAPI.lua")}
-local files = {"Startup.lua", "fusionReactorMain.lua", "interfaceAPI.lua", "mekanismFusionAPI.lua", "advancedFusionAPI.lua"}
+local files = {"/Startup.lua", "/fusionReactorMain.lua", "/Modual/interfaceAPI.lua", "/Moduals/mekanismFusionAPI.lua", "/Moduals/advancedFusionAPI.lua"}
 
 for i = 1, 4 do
-    if fs.exists(filePath[1 + i]) then
+    if fs.exists(files[1 + i]) then
 
         exists[i] = true
 
@@ -62,4 +61,4 @@ elseif exists[4] == false then
 
 end
 
-os.run({}, filePath[2])
+os.run({}, files[2])
