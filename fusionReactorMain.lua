@@ -13,8 +13,9 @@ local logicPort     = "fusionReactorLogicAdapter_0" -- please find the periphera
 local monitorName   = "monitor_4"                        -- please find the peripheral name of the monitor.
 
 
-os.loadAPI("/Moduals/mekanismFusionAPI.lua")
-os.loadAPI("/Moduals/interfaceAPI.lua")
+local mekanismAPI = require("Moduals.mekanismFusionAPI")
+local interfaceAPI = require("Moduals.interfaceAPI")
+local advancedAPI = nil
 
 local fusionLogicPort = peripheral.wrap(logicPort)
 local monitor         = peripheral.wrap(monitorName)
@@ -25,14 +26,14 @@ local reactorStatus = nil
 
 if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
-    os.loadAPI("/Moduals/advancedFusionAPI.lua")
+    advancedAPI= require("Moduals.advancedFusionAPI")
     advanced = true
 
 end
 
 term.clear()
 
-local reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
+local reactorStatus = mekanismAPI.getData(fusionLogicPort)
 local monitorSize, tankSize = interfaceAPI.initialisation(monitor, reactorStatus[5][1], advanced)
 
 
@@ -40,10 +41,10 @@ if advanced then
 
     while true do
 
-        reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        mekanismStat = mekanismFusionAPI.getBasicData(fusionLogicPort)
+        reactorStatus = mekanismAPI.getData(fusionLogicPort)
+        mekanismStat = mekanismAPI.getBasicData(fusionLogicPort)
         interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
-        updateText(monitor, maxSize, mekanismStat)
+        interfaceAPI.updateText(monitor, maxSize, mekanismStat)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 
@@ -53,10 +54,10 @@ else
 
     while true do
 
-        reactorStatus = mekanismFusionAPI.getData(fusionLogicPort)
-        mekanismStat = mekanismFusionAPI.getBasicData(fusionLogicPort)
+        reactorStatus = mekanismAPI.getData(fusionLogicPort)
+        mekanismStat = mekanismAPI.getBasicData(fusionLogicPort)
         interfaceAPI.redrawBars(monitor, monitorSize, tankSize, reactorStatus)
-        updateText(monitor, maxSize, mekanismStat)
+        interfaceAPI.updateText(monitor, maxSize, mekanismStat)
         interfaceAPI.time(monitor, monitorSize)
         os.sleep(0.05)
 
