@@ -28,7 +28,7 @@ local function round(num, decimalPlace)
 
 end
 
-function getData(port)
+function mekanismFusionAPI.getData(port)
 
     local plasmaTemp = port.getPlasmaTemperature()
     local PlasmaMax  = port.getMaxPlasmaTemperature(true)
@@ -81,13 +81,13 @@ function getData(port)
     
 end
 
-function setInjectionRate(port, value)
+function mekanismFusionAPI.setInjectionRate(port, value)
 
     port.setInjectionRate(setRate)
 
 end
 
-function getBasicData(port)
+function mekanismFusionAPI.getBasicData(port)
 
     local hohlraum = false
     local powerGenStr = nil

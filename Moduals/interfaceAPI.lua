@@ -30,7 +30,7 @@ local function round(num, decimalPlace)
 
 end
 
-function time(monitor, maxSize)
+function interfaceAPI.time(monitor, maxSize)
 
     monitor.setBackgroundColor(colors.lightGray)
     monitor.setTextColor(colors.black)
@@ -258,7 +258,7 @@ local function drawTextInit(monitor, maxSize, DTPercent, advanced)
     end
 end
 
-function redrawBars(monitor, maxSize, tankSize, filledCapacities)
+function interfaceAPI.redrawBars(monitor, maxSize, tankSize, filledCapacities)
 
     local tankColors = {colors.white, colors.red, colors.blue, colors.lightGray, colors.purple, colors.green}
     local tankPixels = {nil, nil, nil, nil, {nil, nil, nil}}
@@ -377,7 +377,7 @@ function redrawBars(monitor, maxSize, tankSize, filledCapacities)
     end
 end
 
-function updateText(monitor, maxSize, text)
+function interfaceAPI.updateText(monitor, maxSize, text)
 
     monitor.setBackgroundColor(colors.lightGray)
     monitor.setTextColor(colors.black)
@@ -390,7 +390,7 @@ function updateText(monitor, maxSize, text)
 
 end
 
-function initialisation(monitor, DTfuel, advanced)
+function interfaceAPI.initialisation(monitor, DTfuel, advanced)
 
     monitor.setTextScale(1)
     monitor.setBackgroundColor(colors.black)

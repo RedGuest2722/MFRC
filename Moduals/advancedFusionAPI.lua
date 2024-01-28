@@ -19,6 +19,8 @@ local curEffi = 0
 local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
 local roundCounter = 0
 
+local advancedFusionAPI = {}
+
 local function round(num, decimalPlace)
 
     local numDec = (num * 10^(decimalPlace))
@@ -85,7 +87,7 @@ local function efficiencyLevelChange(cE)
 
 end
 
-function ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
+function advancedFusionAPI.ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
 
     local changeNegative = false
     local firstRun = true
@@ -132,7 +134,7 @@ function ramping(port, lastEffi, rC) -- this allows the program to by pass the s
     return lastEffi, rC
 end
 
-function stable(port, lastEffi, rC)
+function advancedFusionAPI.stable(port, lastEffi, rC)
 
     local changeNegative = false
     local firstRun = true
