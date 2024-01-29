@@ -442,3 +442,5 @@ function interfaceAPI:updateText(text) -- Update values on the monitor
     self.monitor.write(tostring(text[2]))
 
 end
+
+return interfaceAPI
