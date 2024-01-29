@@ -24,6 +24,7 @@ local monitor         = peripheral.wrap(monitorName)
 
 local advanced      = false
 local mekanismStat  = nil
+local reactorStatus = {}
 
 if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
@@ -34,19 +35,19 @@ end
 
 term.clear()
 
-local reactorStatus = mekanismAPI.init(fusionLogicPort)
-      interfaceAPI.init(monitor, reactorStatus[5][1], advanced)
+local DTFuel = mekanismAPI.init(fusionLogicPort)
+      interfaceAPI.init(monitor, DTFuel, advanced)
 
 
 if advanced then
 
     while true do
 
-        reactorStatus = mekanismAPI.getData()
-        mekanismStat = mekanismAPI.getBasicData()
-        interfaceAPI.redrawBars(reactorStatus)
-        interfaceAPI.updateText(mekanismStat)
-        interfaceAPI.time()
+        reactorStatus = mekanismAPI:getData()
+        mekanismStat = mekanismAPI:getBasicData()
+        interfaceAPI:redrawBars(reactorStatus)
+        interfaceAPI:updateText(mekanismStat)
+        interfaceAPI:time()
         os.sleep(0.05)
 
     end
@@ -55,11 +56,11 @@ else
 
     while true do
 
-        reactorStatus = mekanismAPI.getData()
-        mekanismStat = mekanismAPI.getBasicData()
-        interfaceAPI.redrawBars(reactorStatus)
-        interfaceAPI.updateText(mekanismStat)
-        interfaceAPI.time()
+        reactorStatus = mekanismAPI:getData()
+        mekanismStat = mekanismAPI:getBasicData()
+        interfaceAPI:redrawBars(reactorStatus)
+        interfaceAPI:updateText(mekanismStat)
+        interfaceAPI:time()
         os.sleep(0.05)
 
     end

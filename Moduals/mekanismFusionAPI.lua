@@ -4,9 +4,10 @@ this runs some commands for the main script
 
 ]]--
 
+
 ---@param num number Number for rounding.
 ---@param decimalPlace integer Number of decimal places.
----@return number
+---@return number -- Returns rounded number
 ---@nodiscard
 local function round(num, decimalPlace) -- Rounds number values to specified number of decimal places.
 
@@ -37,6 +38,7 @@ local mekanismFusionAPI = {
     port = "fusionReactorLogicAdapter_0"
 }
 
+
 ---@param port string String peripheral name of the Fusion Reactor Logic Port.
 ---@return boolean DTHere Returns true if DT Fuel is used by Fusion Reactor.
 ---@return table self Returns a table to be used by interfaceAPI.
@@ -58,7 +60,9 @@ function mekanismFusionAPI.init(port)
     return DTHere, self
 end
 
-function mekanismFusionAPI:getData()
+
+---@return table -- Returns percents in table to be used
+function mekanismFusionAPI:getData() -- Gets data from Fusion Logic port
 
     local plasmaTemp = self.port.getPlasmaTemperature()
     local PlasmaMax  = self.port.getMaxPlasmaTemperature(true)
@@ -107,8 +111,7 @@ function mekanismFusionAPI:getData()
         end
     end
 
-    return percents 
-    
+    return percents  
 end
 
 
@@ -120,7 +123,7 @@ function mekanismFusionAPI:setInjectionRate(value)
 end
 
 
----@return table
+---@return table -- Returns a table for values used by top right of the moitor.
 function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of the monitor.
 
     local hohlraum = false
