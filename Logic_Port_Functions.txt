@@ -42,14 +42,32 @@ Fuel Functions
 
 Other Functions:
 
-    getPassiveGeneration
+    getPassiveGeneration -- power gen
+
     getProductionRate
 
     getInjectionRate
+
     getHohlraum
 
     
-    
-
 
 -- ignition temp (400000000 FE)
+
+Functions:
+
+    getPassiveGeneration
+
+    getInjectionRate
+
+    -- getHohlraum
+
+    getProductionRate
+
+
+
+    getErrorLevel
+
+    getEfficiency
+
+    adjustReactivity

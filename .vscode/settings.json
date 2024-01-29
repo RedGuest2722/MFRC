@@ -1,12 +1,39 @@
 {
-    "Lua.diagnostics.disable": [
-        "undefined-field",
-        "deprecated",
-        "lowercase-global"
-    ],
     "Lua.diagnostics.globals": [
+        "_HOST",
+        "bit",
         "colors",
+        "fs",
+        "http",
+        "keys",
+        "parallel",
+        "periphemu",
+        "peripheral",
+        "read",
+        "rs",
+        "settings",
+        "shell",
+        "term",
         "textutils",
-        "peripheral"
-    ]
+        "window",
+        "os"
+    ],
+    "Lua.diagnostics.severity": {
+        "unused-local": "Information",
+        "unused-vararg": "Information",
+        "unused-function": "Warning",
+        "unused-label": "Information"
+    },
+    "Lua.hint.setType": true,
+    "Lua.diagnostics.disable": [
+        "duplicate-set-field",
+        "inject-field",
+        "undefined-field",
+        "need-check-nil"
+    ],
+    "Lua.workspace.library": [
+        "C:/Users/User/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/cc-tweaked/module/library"
+    ],
+    "Lua.runtime.version": "Lua 5.3",
+    "Lua.workspace.checkThirdParty": false
 }
