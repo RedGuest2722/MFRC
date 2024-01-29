@@ -162,3 +162,5 @@ function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of 
 
     return {hohlraum, powerGenStr, injRate}
 end
+
+return mekanismFusionAPI
