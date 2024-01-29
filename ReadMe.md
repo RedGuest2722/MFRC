@@ -1,16 +1,21 @@
-Radioactivity: 
+Mekanism Fusion Reactor Control 
 
-    Fusion Reactor from Better Fusion Reactor for Mekanism.
+This project aims to add GUI that shows internal values of the Fusion Reactor. Like temperatures and the amount of fuel.      
 
-        -
+
+Download:
+
+NOTE: A minimum monitor size of 5 x 3 is required.
+
+Paste the command below into the computer that will control the Fusion Reactor.
+
+wget 
         
-        
-        
------ NOT ALL FILES WORKING -----
+----- NOT ALL FILES ARE WORKING -----
 
- -- Working files include
-     - /Moduals/InterfaceAPI.lua
-
+Working files include:
+   
+  - /Moduals/InterfaceAPI.lua
 
 
 
@@ -48,10 +53,9 @@ Radioactivity:
 
 
 
-for me: wget https://raw.githubusercontent.com/RedGuest2722/Radioactivity/Development/Fusion_Reactor.lua?token=GHSAT0AAAAAACNJ4R67SSVLKB6UVDSNEFQQZNRMTYA
-=======
+
+for me: wget 
+
+
+
 Minimum monitor size: 5 x 3
-
-Download: 
-
-    wget https://raw.githubusercontent.com/RedGuest2722/Radioactivity/Main/Setup.lua
