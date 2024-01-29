@@ -8,7 +8,7 @@
 
 ---@param num number Number for rounding.
 ---@param decimalPlace integer Number of decimal places.
----@return number
+---@return number -- Returns rounded number
 ---@nodiscard
 local function round(num, decimalPlace) -- Rounds number values to specified number of decimal places.
 

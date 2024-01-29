@@ -1,9 +1,9 @@
-Mekanism Fusion Reactor Control 
+# Mekanism Fusion Reactor Control 
 
 This project aims to add GUI that shows internal values of the Fusion Reactor. Like temperatures and the amount of fuel.      
 
 
-Download:
+## Download:
 
 NOTE: A minimum monitor size of 5 x 3 is required.
 
@@ -16,6 +16,8 @@ wget
 Working files include:
    
   - /Moduals/InterfaceAPI.lua
+
+
 
 
 

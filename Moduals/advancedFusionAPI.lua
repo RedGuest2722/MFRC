@@ -21,9 +21,10 @@ local roundCounter = 0
 
 local interfaceAPI = require("Moduals.interfaceAPI")
 
----@class advancedFusionAPI
-local advancedFusionAPI = {}
-
+---@param num number Number for rounding.
+---@param decimalPlace integer Number of decimal places.
+---@return number -- Returns rounded number
+---@nodiscard
 local function round(num, decimalPlace)
 
     local numDec = (num * 10^(decimalPlace))
@@ -45,6 +46,10 @@ local function round(num, decimalPlace)
     return (numRound / 10^(decimalPlace))
 
 end
+
+---@class advancedFusionAPI
+local advanceFusionAPI = {}
+
 
 local function check(port, lE)
 
