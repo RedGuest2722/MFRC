@@ -183,3 +183,5 @@ function advancedFusionAPI.stable(port, lastEffi, rC)
 
     return lastEffi, rC
 end
+
+return advancedFusionAPI
