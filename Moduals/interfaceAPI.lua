@@ -224,14 +224,7 @@ end
 
 
 ---@class interfaceAPI
-local interfaceAPI = {
-
-    monitor = "monitor_0",
-    sizes = {50, 19, 25},
-    DTHere = false,
-    advanced = false
-}
-
+local interfaceAPI = {}
 
 
 ---@param monitor string String peripheral name of monitor
@@ -253,9 +246,7 @@ function interfaceAPI.init(monitor, DTHere, advanced)
     self.advanced = advanced
 
     self.monitor.setTextScale(1)
-    self.monitor.setBackgroundColor(colors.black)
     self.monitor.clear()
-    self.monitor.setCursorPos(1, 1)
 
     drawBackground(monitor, sizes)
     drawBorder(monitor, sizes, advanced)

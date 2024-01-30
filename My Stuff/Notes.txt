@@ -4,3 +4,13 @@ Stuff to do:
     -
     -
     -
+
+
+
+
+
+Reactivity change
+
+
+if "Current efficiency" ~= 100 then
+    ("Last efficiency" - "Current efficiency")

@@ -6,20 +6,14 @@ This program will include all the interface and logic control of the fusion reac
 
 Additional commands: 
 
-    Port.adjustReactivity
-    Port.getEfficiency
-    Port.getErrorLevel
+    .adjustReactivity()
+    .getEfficiency()
+    .getErrorLevel()
 
 ]]--
 
--- Local varibles 
-
-local lastEffi = 0
-local curEffi = 0
-local logicPort = peripheral.wrap("fusionReactorLogicAdapter_0")
-local roundCounter = 0
-
-local interfaceAPI = require("Moduals.interfaceAPI")
+local interfaceAPI = require("interfaceAPI")
+local mekanismAPI = require("mekanismFusionAPI")
 
 ---@param num number Number for rounding.
 ---@param decimalPlace integer Number of decimal places.
@@ -44,149 +38,32 @@ local function round(num, decimalPlace)
     end
 
     return (numRound / 10^(decimalPlace))
-
 end
 
 ---@class advancedFusionAPI
-local advanceFusionAPI = {}
+local advancedFusionAPI = {}
 
 
-local function check(port, lE)
+---@param port string String peripheral name of the Fusion Reactor Logic Port.
+---@return table self Returns a tableto be used by advancedFusionAPI
+---@return table interfaceAPI_table Returns table from interfaceAPI
+function advancedFusionAPI.init(port, monitor)
 
-    local eL = round(port.getErrorLevel()) -- find error level
+    local interfaceAPI_table = interfaceAPI.init(monitor, false, false)
 
-    local cuE = round(port.getEfficiency()) -- find current efficiency
+    local self = setmetatable({}, advancedFusionAPI)
 
-    local chE = round(cuE - lE) -- change in efficiency
+    self.port = port
+    self.monitor = monitor
 
-    return cuE, chE, eL
+    return self, interfaceAPI_table
+end
+
+function advancedFusionAPI:changeCR()
+    
+
 
 end
 
-local function efficiencyLevelChange(cE)
-
-    local change = 0
-
-    if cE > 98 then
-
-        change = 0.01
-
-    elseif cE > 95 then
-
-        change = 0.05
-
-    elseif cE > 80 then
-        
-        change = 0.1
-
-    elseif cE > 60 then
-
-        change = 5
-
-    elseif cE > 30 then
-
-        change = 15
-
-    else
-
-        change = 20
-
-    end
-
-    return change
-
-end
-
-function advancedFusionAPI.ramping(port, lastEffi, rC) -- this allows the program to by pass the stable reaction logic.
-
-    local changeNegative = false
-    local firstRun = true
-
-    while round(port.getEfficiency()) < 80 do
-
-        local curEffi, chaEffi, errLev = check(port, lastEffi)
-        
-        if firstRun == false and chaEffi < 0 then
-
-            if changeNegative == false then
-
-                changeNegative = true
-
-            else
-
-                changeNegative = false
-
-            end
-        end
-
-        local firstRun = false
-
-        local levelChange = efficiencyLevelChange(curEffi)
-
-        if changeNegative == false then
-
-            port.adjustReactivity(levelChange)
-            print("\n" .. interfaceAPI:time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
-
-        else
-
-            port.adjustReactivity(-levelChange)
-            print("\n" .. interfaceAPI:time() .."\nReactor Status: Ramping\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
-
-        end
-
-        lastEffi = curEffi
-        local rC = rC + 1
-
-        os.sleep(2)
-    end
-
-    return lastEffi, rC
-end
-
-function advancedFusionAPI.stable(port, lastEffi, rC)
-
-    local changeNegative = false
-    local firstRun = true
-
-    while round(port.getEfficiency()) > 80 do
-
-        local curEffi, chaEffi, errLev = check(port, lastEffi)
-        
-        if chaEffi < 0 then
-
-            if changeNegative == false then
-
-                changeNegative = true
-
-            else
-
-                changeNegative = false
-
-            end
-        end
-
-        local levelChange = efficiencyLevelChange(curEffi)
-
-        if changeNegative == false then
-
-            port.adjustReactivity(levelChange)
-            print("\n" .. interfaceAPI:time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: +" .. levelChange) -- Debug
-
-        else
-
-            port.adjustReactivity(-levelChange)
-            print("\n" .. interfaceAPI:time() .."\nReactor Status: Stable\nEfficiency: " .. curEffi .. " " .. chaEffi .. "\nReactivity: -" .. levelChange) -- Debug
-
-        end
-
-        local lastEffi = curEffi
-        local rC = rC + 1
-
-        os.sleep(4)
-    end
-
-    return lastEffi, rC
-end
 
 return advancedFusionAPI

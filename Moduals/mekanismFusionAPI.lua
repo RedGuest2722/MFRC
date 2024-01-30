@@ -33,21 +33,20 @@ end
 
 ---@class mekanismFusionAPI
 
-local mekanismFusionAPI = {
-
-    port = "fusionReactorLogicAdapter_0"
-}
+local mekanismFusionAPI = {}
 
 
 ---@param port string String peripheral name of the Fusion Reactor Logic Port.
+---@param advanced boolean 
 ---@return boolean DTHere Returns true if DT Fuel is used by Fusion Reactor.
 ---@return table self Returns a table to be used by interfaceAPI.
-function mekanismFusionAPI.init(port)
+function mekanismFusionAPI.init(port, advanced)
 
     local DTHere = false
     local self = setmetatable({}, mekanismFusionAPI) -- Meta table to be used by mekanismFusionAPI.
 
     self.port = port
+    self.advanced = advanced
 
     DTPerc = port.getDTFuelFilledPercentage()
 
@@ -149,7 +148,7 @@ function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of 
 
     else
 
-        powerGenStr = "0 FE"
+        powerGenStr = "N/A or 0 FE"
 
     end
 
@@ -164,6 +163,18 @@ function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of 
     end
 
     return {hohlraum, powerGenStr, injRate}
+end
+
+function mekanismFusionAPI:getAdvancedData()
+
+    local efficiency = self.port.getEfficiency()
+    local errorRate = self.port.getErrorLevel()
+    
+end
+
+---@param value number to change reactivity by
+function mekanismFusionAPI:changeReactivity(value)
+    
 end
 
 return mekanismFusionAPI
