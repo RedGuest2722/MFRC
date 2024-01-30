@@ -6,6 +6,12 @@
     
 ]]--
 
+--colors
+
+local LB = colors.lightBlue
+local GY = colors.gray
+
+
 ---@param num number Number for rounding.
 ---@param decimalPlace integer Number of decimal places.
 ---@return number -- Returns rounded number
@@ -36,7 +42,7 @@ end
 ---@param advanced boolean If the mod 'Better Fusion Reactor for Mekanism Plus' is Installed
 local function drawBorder(monitor, sizes, advanced) -- Draws borders for the display.
 
-    monitor.setBackgroundColor(colors.gray)
+    monitor.setBackgroundColor(GY)
 
     -- Drawing of Borders
 
@@ -111,7 +117,7 @@ local function drawBorder(monitor, sizes, advanced) -- Draws borders for the dis
 
         -- Horizontal Right Middle Border
 
-        monitor.setBackgroundColor(colors.gray)
+        monitor.setBackgroundColor(GY)
 
         for i = 1, (sizes[1] - (sizes[3] + 1)) do
 
@@ -126,7 +132,7 @@ end
 ---@param sizes table Monitor size and positions
 local function drawBackground(monitor, sizes) -- Draws Background for the display.
 
-    monitor.setBackgroundColor(colors.lightGray)
+    monitor.setBackgroundColor(LB)
 
     for i = 1, sizes[2] do
 
@@ -148,12 +154,12 @@ local function drawTextInit(monitor, sizes, DTHere) -- Writes text on monitor.
 
     monitor.setCursorPos((math.floor((sizes[3] - 2) / 2) - 5), 2)
     monitor.setTextColor(colors.black)
-    monitor.setBackgroundColor(colors.lightGray)
+    monitor.setBackgroundColor(LB)
     monitor.write("Fusion Reactor")
 
     -- Mekanism Names
 
-    monitor.setBackgroundColor(colors.lightGray)
+    monitor.setBackgroundColor(LB)
     monitor.setTextColor(colors.black)
 
     monitor.setCursorPos((sizes[3] + 2), 5)
@@ -190,7 +196,7 @@ local function drawTextInit(monitor, sizes, DTHere) -- Writes text on monitor.
         monitor.setCursorPos(((0.5 * (sizes[3] - string.len(tankNames[5]))) + 1), 13)
         monitor.write(tankNames[5])
 
-        monitor.setBackgroundColor(colors.lightGray)
+        monitor.setBackgroundColor(LB)
 
         for i = 1, 2 do
             for o = 1, (sizes[3] - 3) do
@@ -260,7 +266,7 @@ end
 
 function interfaceAPI:time() -- Displays time on monitor
 
-    self.monitor.setBackgroundColor(colors.lightGray)
+    self.monitor.setBackgroundColor(LB)
     self.monitor.setTextColor(colors.black)
 
     local time1 = textutils.formatTime(os.time(), true)
@@ -432,7 +438,7 @@ end
 ---@param text table Values from the mekanismFusionAPI.getBasicData()
 function interfaceAPI:updateText(text) -- Update values on the monitor
 
-    self.monitor.setBackgroundColor(colors.lightGray)
+    self.monitor.setBackgroundColor(LB)
     self.monitor.setTextColor(colors.black)
 
     self.monitor.setCursorPos((self.sizes[2] - (2 + string.len(text[2]))), 6)
