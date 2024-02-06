@@ -7,7 +7,9 @@ Stuff to do:
 
 
 
+my develop branch
 
+wget https://raw.githubusercontent.com/RedGuest2722/MFRC/Development-Main/Setup.lua
 
 Reactivity change
 
