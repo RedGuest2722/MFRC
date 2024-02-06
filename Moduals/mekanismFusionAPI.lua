@@ -165,16 +165,21 @@ function mekanismFusionAPI:getBasicData() -- Gets data used by the top right of 
     return {hohlraum, powerGenStr, injRate}
 end
 
+
+---@return table -- Returns current efficiency and error rate rounded to 2 d.p.
 function mekanismFusionAPI:getAdvancedData()
 
     local efficiency = self.port.getEfficiency()
     local errorRate = self.port.getErrorLevel()
-    
+
+    return {round(efficiency, 2), round(errorRate, 2)}
 end
 
 ---@param value number to change reactivity by
 function mekanismFusionAPI:changeReactivity(value)
     
+    self.port.adjustReactivity(value)
+
 end
 
 return mekanismFusionAPI

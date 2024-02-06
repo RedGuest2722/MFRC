@@ -15,16 +15,18 @@ local logicPort     = "fusionReactorLogicAdapter_0" -- please find the periphera
 local monitorName   = "monitor_4"                   -- please find the peripheral name of the monitor.
 
 
-local mekanismAPI = require("mekanismFusionAPI")
-local interfaceAPI = require("interfaceAPI")
-local advancedAPI = nil
+local mekanismAPI       = require("mekanismFusionAPI")
+local interfaceAPI      = require("interfaceAPI")
+local advancedAPI       = nil
 
-local fusionLogicPort = peripheral.wrap(logicPort)
-local monitor         = peripheral.wrap(monitorName)
+local fusionLogicPort   = peripheral.wrap(logicPort)
+local monitor           = peripheral.wrap(monitorName)
 
-local advanced      = false
-local mekanismStat  = nil
-local reactorStatus = {}
+local advanced          = false
+local mekanismStat      = nil
+local reactorStatus     = {}
+local advancedStat      = {}
+local changeReactivity  = nil
 
 if fs.exists("/Moduals/advancedFusionAPI.lua") then
 
@@ -45,6 +47,9 @@ if advanced then
 
         reactorStatus = mekanismAPI:getData()
         mekanismStat = mekanismAPI:getBasicData()
+        advancedStat = mekanismAPI:getAdvancedData()
+        changeReactivity = advancedAPI:changeCR(advancedStat[1])
+        mekanismAPI:changeReactivity(changeReactivity)
         interfaceAPI:redrawBars(reactorStatus)
         interfaceAPI:updateText(mekanismStat)
         interfaceAPI:time()
