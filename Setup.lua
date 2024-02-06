@@ -4,7 +4,7 @@
 
 ]]--
 
-local repositoryMain = "https://raw.githubusercontent.com/RedGuest2722/Radioactivity/Development"
+local repositoryMain = "https://raw.githubusercontent.com/RedGuest2722/Radioactivity/Main"
 
 local files = {"/Startup.lua", "/fusionReactorMain.lua", "/Moduals/interfaceAPI.lua", "/Moduals/mekanismFusionAPI.lua", "/Moduals/advancedFusionAPI.lua"}
 
