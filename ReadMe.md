@@ -10,7 +10,7 @@
 
 Paste the command below into the computer that will control the Fusion Reactor.
 
-wget 
+wget https://raw.githubusercontent.com/RedGuest2722/MFRC/Main/Setup.lua
 
 > [!WARNING]      
 > ----- NOT ALL FILES ARE WORKING -----
